@@ -1,0 +1,16 @@
+.pokecard-container {
+  display: flex;
+  flex-direction: column;
+  background: rgb(78, 163, 163);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
+}
+
+.pokemon-img {
+  width: 300px;
+}
+
+.pokemon-description {
+  text-align: center;
+}
