@@ -11,7 +11,7 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, onResultC
       />
       <div className="search-results" hidden={hiddenResults}>
         {results.map((result) => {
-          return <h3 onClick={(e) => onResultClick(e)} className="search-result" title={result.url} key={result.url}>{result.name}</h3>
+          return <h3 onClick={(e) => onResultClick(e)} className="search-result" data-url={result.url} key={result.url}>{result.name}</h3>
         })}
       </div>
     </div>

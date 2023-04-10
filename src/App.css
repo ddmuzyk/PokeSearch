@@ -56,14 +56,57 @@
 
 .back-button {
   position: absolute;
+  background: rgb(165, 209, 169);
   top: 50px;
-  left: 100px;
+  left: 70px;
+  padding: 10px 30px;
   cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.3);
+  user-select: none;
+}
+
+.back-button:hover {
+  filter: brightness(90%);
+
+}
+
+.back-button:active {
+  transform: translateY(2px);
 }
 
 .favorites-button {
   position: absolute;
+  background: rgb(102, 223, 112);
   top: 50px;
   right: 100px;
   cursor: pointer;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.3);
+  user-select: none;
+}
+
+.favorites-button:hover {
+  filter: brightness(90%);
+}
+
+.favorites-button:active {
+  transform: translateY(2px);
+}
+
+.svg-container {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(224, 192, 103);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.loader {
+  width: 200px;
 }

@@ -13,7 +13,7 @@ input {
 
 .searchbar-container {
   position: absolute;
-  top: 100px;
+  top: 30%;
   /* height: 400px; */
   display: flex;
   flex-direction: column;
