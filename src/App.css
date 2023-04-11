@@ -42,6 +42,11 @@
 } */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+@font-face {
+  font-family: Pokemon;
+  src: url(PokemonHollowNormal-pyPZ.ttf);
+}
+
 #root {
   background: rgb(224, 192, 103);
 }
@@ -109,4 +114,11 @@
 
 .loader {
   width: 200px;
+}
+
+.pokesearch-title {
+  position: fixed;
+  top: 2px;
+  font-family: Pokemon!important;
+  font-size: 4rem;
 }

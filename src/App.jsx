@@ -15,9 +15,11 @@ function App() {
   const [pokemonData, setPokemonData] = useState({});
   const [route, setRoute] = useState('search');
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isLoaderShown, setIsLoaderShown] = useState(false);
 
   const handleImageLoad = () => {
     setIsImageLoaded(true);
+    setIsLoaderShown(false);
   };
 
   // useEffect(() => {
@@ -69,7 +71,7 @@ function App() {
 
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
-    setRoute('loading');
+    setIsLoaderShown(true);
     try {
       const url = e.target.getAttribute('data-url');
       const response = await fetch(url);
@@ -83,17 +85,21 @@ function App() {
 
   if (route === 'search') {
     return <div className='App'>
+      <h1 className='pokesearch-title'>PokeSearch</h1>
       <Searchbar results={results} 
       hiddenResults={hiddenResults} 
       inputValue={inputValue}
       filterResults={filterResults}
       onResultClick={onResultClick}
       />
+      <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+        <img className='loader' src={rocket} alt='Loading image'></img>
+      </div>
     </div>
   } else if (route === 'resultsPage') {
     return (
       <div className='App'>
-        <div className='svg-container' style={{display: isImageLoaded ? 'none' : 'flex'}}>
+        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
         <h1 className='back-button' onClick={clearData}>Back to search</h1>
@@ -103,13 +109,6 @@ function App() {
         />
       </div>)
   } 
-  // else if (route === 'loading' && !isImageLoaded) {
-  //   return (
-  //     <div className='svg-container'>
-  //       <img className='loader' src={rocket} alt='Loading image'></img>
-  //     </div>
-  //   )
-  // }
 
 //   return (
 //     <div className="App">
