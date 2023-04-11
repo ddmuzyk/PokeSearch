@@ -39,18 +39,33 @@ function App() {
   }
 
   const filterResults = (e) => {
+    
     setInputValue(e.target.value);
     if (!e.target.value) {
       setResults(results => []);
       setHiddenResults(true);
       return;
     } else {
-      // let newResults = pokemons.filter((pokemon) => {
-      //   return pokemon.name.includes(e.target.value);
-      // })
+      // if (results.length >= 1 && results[0].name.includes(e.target.value)) {
+      //   let times = 0;
+      //   results.forEach((result) => {
+      //     if (result.name.includes(e.target.value.toLowerCase())) {
+      //       times++
+      //     }
+      //   })
+      //   console.log('times:', times);
+      //   console.log('results.length: ', results.length)
+      //   if (times === results.length) {
+      //     return;
+      //   }
+      // }
+      if (e.target.value.length > 2 && hiddenResults && !results.length) {
+        return;
+      } 
       let newResults = [];
       let i = 0;
       for (let pokemon of pokemons) {
+        console.log('operations')
         if ( i < 10) {
           if (pokemon.name.includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
@@ -66,7 +81,11 @@ function App() {
       }
       setResults(results => newResults);
       setHiddenResults(false);
+      // if (results.length) {
+      //   console.log(results[0].name)
+      // }
     }
+    
   }
 
   // Display the searched pokemon when user clicks on a result
