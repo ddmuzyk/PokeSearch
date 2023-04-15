@@ -21,6 +21,13 @@ function App() {
   const [addedToFavorites, setAddedToFavorites] = useState(false);
 
   const handleImageLoad = () => {
+    if (localStorage.getItem('favPokemons')) {
+      const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+      const pokemonName = pokemonData.name;
+      if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
+        setAddedToFavorites(true);
+      }
+    }
     setIsImageLoaded(true);
     setIsLoaderShown(false);
   };
@@ -32,13 +39,32 @@ function App() {
     setHiddenResults(true);
     setRoute('search');
     setIsImageLoaded(false);
+    setAddedToFavorites(false);
   }
 
   const onAddToFavoritesClick = () => {
-    setAddedToFavorites(!addedToFavorites);
-    if (!localStorage.getItem('favPokemons')) {
-      localStorage.setItem('favPokemons', JSON.stringify(pokemonData));
-    } 
+    const pokemonKey = pokemonData.name;
+    let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+    if (localStorage.getItem('favPokemons') && Object.keys(favPokemons).length) {
+      if (!addedToFavorites) {
+        favPokemons[pokemonKey] = pokemonData;
+        localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+        setAddedToFavorites(true);
+      } else {
+        delete favPokemons[pokemonKey];
+        if (!Object.keys(favPokemons).length) {
+          localStorage.removeItem('favPokemons')
+          setAddedToFavorites(false);
+        } else {
+          localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+          setAddedToFavorites(false);
+        }
+      }
+    } else {
+      localStorage.setItem('favPokemons', JSON.stringify({[pokemonKey]: pokemonData}));
+      setAddedToFavorites(true);
+    }
+    // console.log(localStorage.getItem('favPokemons') === JSON.stringify(pokemonData))
   }
 
   const filterResults = (e) => {
@@ -68,7 +94,6 @@ function App() {
       let newResults = [];
       let i = 0;
       for (let pokemon of pokemons) {
-        console.log('operations')
         if ( i < 10) {
           if (pokemon.name.includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
@@ -125,7 +150,7 @@ function App() {
         <div className='buttons-container'>
           <h1 className='back-button' onClick={clearData}>Back</h1>
           <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
-            <img className='favorites-icon' src={addedToFavorites || localStorage.getItem('favPokemons') ? heartFull : heartEmpty}/>
+            <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
           </h1>
         </div>
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
