@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import pokemons from "./constants/pokemons";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg';
-import rocket from'./rocket.svg';
+import rocket from './rocket.svg';
+import heartEmpty from './img/heart-regular.svg';
+import heartFull from './img/heart-solid.svg';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import './App.css';
@@ -16,18 +18,19 @@ function App() {
   const [route, setRoute] = useState('search');
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
+  const [addedToFavorites, setAddedToFavorites] = useState(false);
 
   const handleImageLoad = () => {
+    if (localStorage.getItem('favPokemons')) {
+      const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+      const pokemonName = pokemonData.name;
+      if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
+        setAddedToFavorites(true);
+      }
+    }
     setIsImageLoaded(true);
     setIsLoaderShown(false);
   };
-
-  // useEffect(() => {
-  //   if (Object.keys(pokemonData).length) {
-  //     console.log(pokemonData.sprites.other['official-artwork']);
-  //     setRoute('resultsPage');
-  //   }
-  // }, [pokemonData]);
 
   const clearData = () => {
     setInputValue('');
@@ -36,6 +39,32 @@ function App() {
     setHiddenResults(true);
     setRoute('search');
     setIsImageLoaded(false);
+    setAddedToFavorites(false);
+  }
+
+  const onAddToFavoritesClick = () => {
+    const pokemonKey = pokemonData.name;
+    let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+    if (localStorage.getItem('favPokemons') && Object.keys(favPokemons).length) {
+      if (!addedToFavorites) {
+        favPokemons[pokemonKey] = pokemonData;
+        localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+        setAddedToFavorites(true);
+      } else {
+        delete favPokemons[pokemonKey];
+        if (!Object.keys(favPokemons).length) {
+          localStorage.removeItem('favPokemons')
+          setAddedToFavorites(false);
+        } else {
+          localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+          setAddedToFavorites(false);
+        }
+      }
+    } else {
+      localStorage.setItem('favPokemons', JSON.stringify({[pokemonKey]: pokemonData}));
+      setAddedToFavorites(true);
+    }
+    // console.log(localStorage.getItem('favPokemons') === JSON.stringify(pokemonData))
   }
 
   const filterResults = (e) => {
@@ -59,13 +88,12 @@ function App() {
       //     return;
       //   }
       // }
-      if (e.target.value.length > 2 && hiddenResults && !results.length) {
+      if (e.target.value.length > 1 && hiddenResults && !results.length) {
         return;
       } 
       let newResults = [];
       let i = 0;
       for (let pokemon of pokemons) {
-        console.log('operations')
         if ( i < 10) {
           if (pokemon.name.includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
@@ -77,15 +105,16 @@ function App() {
       };
       if (!newResults.length) {
         setHiddenResults(true);
+        setResults([]);
+        return;
+      }
+      // Check if previous results are the same as new results to avoid unneccessary operations
+      if (JSON.stringify(newResults) === JSON.stringify(results)) {
         return;
       }
       setResults(results => newResults);
       setHiddenResults(false);
-      // if (results.length) {
-      //   console.log(results[0].name)
-      // }
     }
-    
   }
 
   // Display the searched pokemon when user clicks on a result
@@ -118,15 +147,20 @@ function App() {
   } else if (route === 'resultsPage') {
     return (
       <div className='App'>
+        <div className='buttons-container'>
+          <h1 className='back-button' onClick={clearData}>Back</h1>
+          <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
+            <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
+          </h1>
+        </div>
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
-        <h1 className='back-button' onClick={clearData}>Back to search</h1>
-        <h1 className='favorites-button'>Add to favorites</h1>
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
         />
-      </div>)
+      </div>
+      )
   } 
 
 //   return (
