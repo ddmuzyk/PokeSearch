@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import pokemons from "./constants/pokemons";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg';
-import rocket from'./rocket.svg';
+import rocket from './rocket.svg';
+import heartEmpty from './img/heart-regular.svg';
+import heartFull from './img/heart-solid.svg';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import './App.css';
@@ -16,18 +18,12 @@ function App() {
   const [route, setRoute] = useState('search');
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
+  const [addedToFavorites, setAddedToFavorites] = useState(false);
 
   const handleImageLoad = () => {
     setIsImageLoaded(true);
     setIsLoaderShown(false);
   };
-
-  // useEffect(() => {
-  //   if (Object.keys(pokemonData).length) {
-  //     console.log(pokemonData.sprites.other['official-artwork']);
-  //     setRoute('resultsPage');
-  //   }
-  // }, [pokemonData]);
 
   const clearData = () => {
     setInputValue('');
@@ -36,6 +32,13 @@ function App() {
     setHiddenResults(true);
     setRoute('search');
     setIsImageLoaded(false);
+  }
+
+  const onAddToFavoritesClick = () => {
+    setAddedToFavorites(!addedToFavorites);
+    if (!localStorage.getItem('favPokemons')) {
+      localStorage.setItem('favPokemons', JSON.stringify(pokemonData));
+    } 
   }
 
   const filterResults = (e) => {
@@ -59,7 +62,7 @@ function App() {
       //     return;
       //   }
       // }
-      if (e.target.value.length > 2 && hiddenResults && !results.length) {
+      if (e.target.value.length > 1 && hiddenResults && !results.length) {
         return;
       } 
       let newResults = [];
@@ -77,15 +80,16 @@ function App() {
       };
       if (!newResults.length) {
         setHiddenResults(true);
+        setResults([]);
+        return;
+      }
+      // Check if previous results are the same as new results to avoid unneccessary operations
+      if (JSON.stringify(newResults) === JSON.stringify(results)) {
         return;
       }
       setResults(results => newResults);
       setHiddenResults(false);
-      // if (results.length) {
-      //   console.log(results[0].name)
-      // }
     }
-    
   }
 
   // Display the searched pokemon when user clicks on a result
@@ -118,15 +122,20 @@ function App() {
   } else if (route === 'resultsPage') {
     return (
       <div className='App'>
+        <div className='buttons-container'>
+          <h1 className='back-button' onClick={clearData}>Back</h1>
+          <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
+            <img className='favorites-icon' src={addedToFavorites || localStorage.getItem('favPokemons') ? heartFull : heartEmpty}/>
+          </h1>
+        </div>
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
-        <h1 className='back-button' onClick={clearData}>Back to search</h1>
-        <h1 className='favorites-button'>Add to favorites</h1>
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
         />
-      </div>)
+      </div>
+      )
   } 
 
 //   return (

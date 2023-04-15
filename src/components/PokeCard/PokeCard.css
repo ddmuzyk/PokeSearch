@@ -1,10 +1,17 @@
 .pokecard-container {
   display: flex;
+  width: 50%;
   flex-direction: column;
+  justify-content: center;
   background: rgb(78, 163, 163);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
 }
 
 .pokemon-img {
@@ -13,4 +20,14 @@
 
 .pokemon-description {
   text-align: center;
+}
+
+@media screen and (max-width: 430px) {
+  .pokecard-container {
+    margin: 0 10%;
+  }
+
+  .pokemon-img {
+    width: 200px;
+  }
 }
