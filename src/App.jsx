@@ -44,8 +44,8 @@ function App() {
 
   const onAddToFavoritesClick = () => {
     const pokemonKey = pokemonData.name;
-    let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
-    if (localStorage.getItem('favPokemons') && Object.keys(favPokemons).length) {
+    if (localStorage.getItem('favPokemons')) {
+      let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
         favPokemons[pokemonKey] = pokemonData;
         localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
