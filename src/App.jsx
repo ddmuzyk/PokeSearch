@@ -7,6 +7,7 @@ import heartEmpty from './img/heart-regular.svg';
 import heartFull from './img/heart-solid.svg';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
+import FavPokeCard from './components/FavPokeCard/FavPokeCard';
 import './App.css';
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
+  const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+  const pokemonKeys = Object.keys(favPokemons);
 
   const handleImageLoad = () => {
     if (localStorage.getItem('favPokemons')) {
@@ -135,9 +138,10 @@ function App() {
     if (localStorage.getItem('favPokemons')) {
       const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       const pokemonKeys = Object.keys(favPokemons);
-      for (let key of pokemonKeys) {
-        console.log(favPokemons[key])
-      }
+      console.log(favPokemons)
+      // for (let key of pokemonKeys) {
+      //   console.log(favPokemons[key])
+      // }
     }
   }
 
@@ -150,6 +154,7 @@ function App() {
       filterResults={filterResults}
       onResultClick={onResultClick}
       />
+      <h2 onClick={() => setRoute('favorites')}>Go to Favorites</h2>
       <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
         <img className='loader' src={rocket} alt='Loading image'></img>
       </div>
@@ -172,8 +177,16 @@ function App() {
       </div>
       )
   } else if (route === 'favorites') {
-    
-     
+    return (
+      <div className='fav-pokemons-container'>
+        {pokemonKeys.map((key) => {
+          console.log(favPokemons[key].name)
+          return <FavPokeCard key={key} 
+          pokemon={key}
+          />
+        })}
+      </div>
+    )
   }
 
 //   return (

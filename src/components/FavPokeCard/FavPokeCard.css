@@ -1,0 +1,24 @@
+.fav-pokecard-container {
+  display: flex;
+  /* width: 50%; */
+  width: 50vw;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(78, 163, 163);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
+}
+
+.fav-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.fav-pokemon-img {
+  width: 300px;
+}
+
+.fav-pokemon-description {
+  text-align: center;
+}
