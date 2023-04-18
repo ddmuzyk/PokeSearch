@@ -4,6 +4,7 @@ const FavPokeCard = () => {
   // Function example in App.jsx
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
   const pokemonKeys = Object.keys(favPokemons);
+  // 
 
   return (
     <div className="fav-pokecard-container">
