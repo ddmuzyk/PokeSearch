@@ -131,9 +131,19 @@ function App() {
     }
   }
 
+  const checkLocalStorageForFavorites = () => {
+    if (localStorage.getItem('favPokemons')) {
+      const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+      const pokemonKeys = Object.keys(favPokemons);
+      for (let key of pokemonKeys) {
+        console.log(favPokemons[key])
+      }
+    }
+  }
+
   if (route === 'search') {
     return <div className='App'>
-      <h1 className='pokesearch-title'>PokeSearch</h1>
+      <h1 onClick={checkLocalStorageForFavorites} className='pokesearch-title'>PokeSearch</h1>
       <Searchbar results={results} 
       hiddenResults={hiddenResults} 
       inputValue={inputValue}
@@ -161,7 +171,10 @@ function App() {
         />
       </div>
       )
-  } 
+  } else if (route === 'favorites') {
+    
+     
+  }
 
 //   return (
 //     <div className="App">
