@@ -162,7 +162,7 @@ function App() {
       filterResults={filterResults}
       onResultClick={onResultClick}
       />
-      <h2 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h2>
+      <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
       <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
         <img className='loader' src={rocket} alt='Loading image'></img>
       </div>
@@ -190,7 +190,9 @@ function App() {
       <div className='App'>
         <div className='favorites-wrapper'>
         <div className='nav-bar'>
-          <h1 className='take-back-button'>Take me back</h1>
+          <h1 className='take-back-button' onClick={clearData}>
+          Take me back
+          </h1>
         </div>
           <div className='fav-pokemons-container'>
             {pokemonKeys.map((key) => {

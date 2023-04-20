@@ -153,7 +153,7 @@ html {
 .fav-pokemons-container {
   display: flex;
   width: 100vw;
-  margin-top: 30px;
+  margin-top: 150px;
   margin-bottom: 30px;
   /* height: 100%; */
   flex-direction: row;
@@ -172,16 +172,27 @@ html {
   margin: 0;
 }
 
+.go-to-favorites-button:hover {
+  text-decoration: underline;
+}
+
 .nav-bar {
   height: 100px;
+  width: 100%;
+  background: rgb(204, 169, 103);
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .take-back-button {
-  margin: 0;
+  margin: 0 40px 0 0;
+  cursor: pointer;
+}
+
+.take-back-button:hover {
+  text-decoration: underline;
 }
 
 /* .fav-pokemons-wrapper {
