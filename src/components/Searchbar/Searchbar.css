@@ -12,8 +12,8 @@ input {
 }
 
 .searchbar-container {
-  position: absolute;
-  top: 30%;
+  position: fixed;
+  top: 350px; 
   /* height: 400px; */
   display: flex;
   flex-direction: column;

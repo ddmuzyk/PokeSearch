@@ -1,7 +1,7 @@
 import React from "react";
 import './FavPokeCard.css';
 
-const FavPokeCard = ({pokemon, onFavPokemonClick, data}) => {
+const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad}) => {
   // Function example in App.jsx
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
   // const pokemonKeys = Object.keys(favPokemons);
@@ -13,7 +13,7 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data}) => {
         <img className="fav-pokemon-img"
         src={favPokemons[pokemon].sprites.other['official-artwork'].front_default}
         alt="Pokemon Image"
-        // onLoad={handleImageLoad}
+        onLoad={handleImageLoad}
         />
       </div>
         <h2 className="fav-pokemon-description">{pokemon.toUpperCase()}</h2>

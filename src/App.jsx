@@ -127,7 +127,6 @@ function App() {
       const url = e.target.getAttribute('data-url');
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data)
       setPokemonData(data);
       setRoute('resultsPage');
     } catch (err) {
@@ -154,19 +153,23 @@ function App() {
   }
 
   if (route === 'search') {
-    return <div className='App'>
-      <h1 onClick={checkLocalStorageForFavorites} className='pokesearch-title'>PokeSearch</h1>
-      <Searchbar results={results} 
-      hiddenResults={hiddenResults} 
-      inputValue={inputValue}
-      filterResults={filterResults}
-      onResultClick={onResultClick}
-      />
-      <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
-      <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-        <img className='loader' src={rocket} alt='Loading image'></img>
+    return (
+      <div className='App'>
+        <div className='search-route-wrapper'>
+          <h1 className='pokesearch-title'>PokeSearch</h1>
+          <Searchbar results={results} 
+          hiddenResults={hiddenResults} 
+          inputValue={inputValue}
+          filterResults={filterResults}
+          onResultClick={onResultClick}
+          />
+          <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+          <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+            <img className='loader' src={rocket} alt='Loading image'></img>
+          </div>
+        </div>
       </div>
-    </div>
+    )
   } else if (route === 'resultsPage') {
     return (
       <div className='App'>
@@ -189,6 +192,9 @@ function App() {
     return (
       <div className='App'>
         <div className='favorites-wrapper'>
+        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+          <img className='loader' src={rocket} alt='Loading image'></img>
+        </div>
         <div className='nav-bar'>
           <h1 className='take-back-button' onClick={clearData}>
           Take me back
@@ -196,7 +202,6 @@ function App() {
         </div>
           <div className='fav-pokemons-container'>
             {pokemonKeys.map((key) => {
-              console.log(key)
               return <FavPokeCard key={key} 
               pokemon={key}
               data={`${key}`}

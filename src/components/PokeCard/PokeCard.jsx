@@ -4,16 +4,16 @@ import './PokeCard.css';
 const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites}) => {
   return (
     <div className="pokecard-container">
-    <div className="img-container">
-      <img className="pokemon-img"
-      src={pokemonData.sprites.other['official-artwork'].front_default} 
-      alt="Pokemon Image"
-      onLoad={() => {
-        checkLocalStorageForFavorites();
-        handleImageLoad();
-        }}
-      />
-    </div>
+      <div className="img-container">
+        <img className="pokemon-img"
+        src={pokemonData.sprites.other['official-artwork'].front_default} 
+        alt="Pokemon Image"
+        onLoad={() => {
+          checkLocalStorageForFavorites();
+          handleImageLoad();
+          }}
+        />
+      </div>
       <h2 className="pokemon-description">{pokemonData.name.toUpperCase()}</h2>
       <h3>HP : {pokemonData.stats[0].base_stat}</h3>
       <h3>Height : {pokemonData.height}</h3>
