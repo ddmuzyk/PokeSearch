@@ -1,14 +1,17 @@
 import React from "react";
 import './PokeCard.css';
 
-const PokeCard = ({pokemonData, handleImageLoad}) => {
+const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites}) => {
   return (
     <div className="pokecard-container">
     <div className="img-container">
       <img className="pokemon-img"
       src={pokemonData.sprites.other['official-artwork'].front_default} 
       alt="Pokemon Image"
-      onLoad={handleImageLoad}
+      onLoad={() => {
+        checkLocalStorageForFavorites();
+        handleImageLoad();
+        }}
       />
     </div>
       <h2 className="pokemon-description">{pokemonData.name.toUpperCase()}</h2>

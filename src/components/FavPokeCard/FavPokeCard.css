@@ -1,13 +1,26 @@
 .fav-pokecard-container {
   display: flex;
   /* width: 50%; */
-  width: 50vw;
+  width: 300px;
+  height: 500px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
   background: rgb(78, 163, 163);
-  padding: 30px;
+  padding: 10px;
   border-radius: 20px;
   box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
+  /* Change the margin to be added only to the last child */
+  /* margin-bottom: 20px; */
+  transition: all 0.3s;
+  font-family: Pokemon;
+  letter-spacing: 3px;
+}
+
+.fav-pokecard-container:hover {
+  box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.808);
+  cursor: pointer;
 }
 
 .fav-img-container {
@@ -16,9 +29,30 @@
 }
 
 .fav-pokemon-img {
-  width: 300px;
+  width: 250px;
 }
 
 .fav-pokemon-description {
   text-align: center;
+  margin: 0;
+  color: rgb(61, 59, 44);
+}
+
+.load-fav-button {
+  margin: 0;
+  height: fit-content;
+  color: rgb(36, 35, 35);
+  transition: all 0.05s;
+  padding-top: 0;
+  padding-bottom: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  user-select: none;
+  /* border: 1px solid rgb(180, 100, 25);
+  border-radius: 10px; */
+}
+
+.load-fav-button:hover {
+  color: brown;
+  transform: scale(1.1);
 }

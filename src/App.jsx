@@ -24,13 +24,13 @@ function App() {
   const pokemonKeys = Object.keys(favPokemons);
 
   const handleImageLoad = () => {
-    if (localStorage.getItem('favPokemons')) {
-      const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
-      const pokemonName = pokemonData.name;
-      if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
-        setAddedToFavorites(true);
-      }
-    }
+    // if (localStorage.getItem('favPokemons')) {
+    //   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+    //   const pokemonName = pokemonData.name;
+    //   if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
+    //     setAddedToFavorites(true);
+    //   }
+    // }
     setIsImageLoaded(true);
     setIsLoaderShown(false);
   };
@@ -127,6 +127,7 @@ function App() {
       const url = e.target.getAttribute('data-url');
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data)
       setPokemonData(data);
       setRoute('resultsPage');
     } catch (err) {
@@ -137,12 +138,19 @@ function App() {
   const checkLocalStorageForFavorites = () => {
     if (localStorage.getItem('favPokemons')) {
       const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
-      const pokemonKeys = Object.keys(favPokemons);
-      console.log(favPokemons)
-      // for (let key of pokemonKeys) {
-      //   console.log(favPokemons[key])
-      // }
+      const pokemonName = pokemonData.name;
+      if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
+        setAddedToFavorites(true);
+      }
     }
+  }
+
+  const onFavPokemonClick = (e) => {
+    setIsLoaderShown(true);
+    const pokemonKey = e.target.getAttribute('data-pokemon');
+    const newData = favPokemons[pokemonKey];
+    setPokemonData(newData);
+    setRoute('resultsPage');
   }
 
   if (route === 'search') {
@@ -173,6 +181,7 @@ function App() {
         </div>
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
+        checkLocalStorageForFavorites={checkLocalStorageForFavorites}
         />
       </div>
       )
@@ -180,9 +189,12 @@ function App() {
     return (
       <div className='fav-pokemons-container'>
         {pokemonKeys.map((key) => {
-          console.log(favPokemons[key].name)
+          console.log(key)
           return <FavPokeCard key={key} 
           pokemon={key}
+          data={`${key}`}
+          handleImageLoad={handleImageLoad}
+          onFavPokemonClick={onFavPokemonClick}
           />
         })}
       </div>
