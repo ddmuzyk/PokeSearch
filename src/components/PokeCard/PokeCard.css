@@ -20,6 +20,8 @@
 
 .pokemon-description {
   text-align: center;
+  font-family: Pokemon;
+  letter-spacing: 5px;
 }
 
 @media screen and (max-width: 430px) {

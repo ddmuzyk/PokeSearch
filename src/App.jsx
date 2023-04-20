@@ -162,7 +162,7 @@ function App() {
       filterResults={filterResults}
       onResultClick={onResultClick}
       />
-      <h2 onClick={() => setRoute('favorites')}>Go to Favorites</h2>
+      <h2 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h2>
       <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
         <img className='loader' src={rocket} alt='Loading image'></img>
       </div>
@@ -187,16 +187,23 @@ function App() {
       )
   } else if (route === 'favorites') {
     return (
-      <div className='fav-pokemons-container'>
-        {pokemonKeys.map((key) => {
-          console.log(key)
-          return <FavPokeCard key={key} 
-          pokemon={key}
-          data={`${key}`}
-          handleImageLoad={handleImageLoad}
-          onFavPokemonClick={onFavPokemonClick}
-          />
-        })}
+      <div className='App'>
+        <div className='favorites-wrapper'>
+        <div className='nav-bar'>
+          <h1 className='take-back-button'>Take me back</h1>
+        </div>
+          <div className='fav-pokemons-container'>
+            {pokemonKeys.map((key) => {
+              console.log(key)
+              return <FavPokeCard key={key} 
+              pokemon={key}
+              data={`${key}`}
+              handleImageLoad={handleImageLoad}
+              onFavPokemonClick={onFavPokemonClick}
+              />
+            })}
+          </div>
+        </div>
       </div>
     )
   }
