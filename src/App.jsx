@@ -214,16 +214,6 @@ function App() {
       </div>
     )
   }
-
-//   return (
-//     <div className="App">
-//     {if (route) {
-//     }}
-//       <h1 className='back-button'>Back to search</h1>
-//       <h1 className='favorites-button'>Add to favorites</h1>
-//       <PokeCard/>
-//     </div>
-//   )
 }
 
 export default App;
