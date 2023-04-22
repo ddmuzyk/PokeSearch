@@ -1,11 +1,22 @@
 import React from "react";
 import './FavPokeCard.css';
 
-const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad}) => {
+const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavoritesUpdated, favoritesUpdated}) => {
   // Function example in App.jsx
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
   // const pokemonKeys = Object.keys(favPokemons);
   // 
+
+  const removeFavorite = (e) => {
+    // setIsItemDeleted(true);
+    const pokemon = e.target.getAttribute('data-pokemon');
+    // console.log(pokemon);
+    // setIsItemDeleted(true)
+    delete favPokemons[pokemon];
+    localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+    // Not the greatest way to cause a rerender :)
+    setFavoritesUpdated(!favoritesUpdated);
+  }
 
   return (
     <div className="fav-pokecard-container">
@@ -20,6 +31,7 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad}) => {
         <h2 className="load-fav-button" data-pokemon={data} onClick={(e) => onFavPokemonClick(e)}>
           Show More
         </h2>
+        <h3 className="remove-fav" data-pokemon={data} onClick={(e) => removeFavorite(e)}>Remove</h3>
         {/* <h3>HP : {favPokemons[pokemon].stats[0].base_stat}</h3> 
         <h3>Height : {favPokemons[pokemon].height}</h3>
         <h3>Attack : {favPokemons[pokemon].stats[1].base_stat}</h3>

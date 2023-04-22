@@ -2,7 +2,7 @@
   display: flex;
   /* width: 50%; */
   width: 300px;
-  height: 500px;
+  min-height: 500px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -16,6 +16,7 @@
   transition: all 0.3s;
   font-family: Pokemon;
   letter-spacing: 3px;
+  z-index: 1;
 }
 
 .fav-pokecard-container:hover {
@@ -53,7 +54,20 @@
 }
 
 .load-fav-button:hover {
-  color: brown;
+  color: rgb(72, 33, 145);
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.remove-fav {
+  cursor: pointer;
+  transition: all 0.05s;
+  margin: 0;
+  position: relative;
+  bottom: 10px;
+}
+
+.remove-fav:hover {
+  transform: scale(1.1);
+  color: rgb(185, 39, 39);
 }

@@ -20,6 +20,7 @@ function App() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
+  const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -221,6 +222,8 @@ function App() {
               data={`${key}`}
               handleImageLoad={handleImageLoad}
               onFavPokemonClick={onFavPokemonClick}
+              setFavoritesUpdated={setFavoritesUpdated}
+              favoritesUpdated={favoritesUpdated}
               />
             })}
           </div>
