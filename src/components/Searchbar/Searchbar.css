@@ -64,3 +64,12 @@ input {
     font-size: 0.9em;
   }
 }
+
+@media screen and (max-height: 854px) {
+
+
+  .searchbar-container {
+    position: fixed;
+    top: 240px
+  }
+}
