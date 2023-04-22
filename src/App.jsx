@@ -40,7 +40,7 @@ function App() {
     setPokemonData({});
     setResults([]);
     setHiddenResults(true);
-    setRoute('search');
+    // setRoute('search');
     setIsImageLoaded(false);
     setAddedToFavorites(false);
   }
@@ -176,7 +176,16 @@ function App() {
     return (
       <div className='App'>
         <div className='buttons-container'>
-          <h1 className='back-button' onClick={clearData}>Back</h1>
+          <h1 className='back-button' onClick={() => {
+            setRoute('search')
+            clearData()
+            }}>
+            Search
+          </h1>
+          <h1 className='back-to-favorites-button' onClick={() => {
+            setRoute('favorites');
+            clearData();
+          }}>Favorites</h1>
           <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
             <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
           </h1>
@@ -198,7 +207,10 @@ function App() {
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
         <div className='nav-bar'>
-          <h1 className='take-back-button' onClick={clearData}>
+          <h1 className='take-back-button' onClick={() => {
+            setRoute('search');
+            clearData();
+          }}>
           Take me back
           </h1>
         </div>

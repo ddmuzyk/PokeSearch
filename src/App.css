@@ -184,6 +184,16 @@ html {
   text-decoration: underline;
 }
 
+.back-to-favorites-button {
+  position: relative;
+  right: 20px;
+}
+
+.back-to-favorites-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .nav-bar {
   height: 100px;
   width: 100%;
