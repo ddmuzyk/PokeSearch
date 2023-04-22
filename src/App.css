@@ -246,3 +246,9 @@ html {
     font-size: 1.5em;
   }
 }
+
+@media screen and (max-width: 590px) {
+  .pokesearch-title {
+    font-size: 3rem;
+  }
+}
