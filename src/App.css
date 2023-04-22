@@ -108,6 +108,8 @@ html {
   transform: translateY(2px);
 }
 
+
+
 .favorites-button {
   /* position: absolute; */
   background: rgb(102, 223, 112);
@@ -244,5 +246,23 @@ html {
 
   .favorites-button {
     font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .pokesearch-title {
+    font-size: 3rem;
+  }
+
+  .go-to-favorites-button {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .pokesearch-title {
+    font-size: 1.2em;
+    position: fixed;
+    top: 200px;
   }
 }

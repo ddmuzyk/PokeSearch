@@ -6,7 +6,7 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, onResultC
 
   return (
     <div className="searchbar-container">
-      <input onChange={(e) => filterResults(e)} placeholder="Search for your favorite pokemon!"
+      <input onChange={(e) => filterResults(e)} placeholder="Search pokemons"
       style={{borderRadius : hiddenResults === false ? '10px 10px 0 0' : '10px'}}
       />
       <div className="search-results" hidden={hiddenResults}>
