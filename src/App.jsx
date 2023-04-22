@@ -98,7 +98,7 @@ function App() {
       let i = 0;
       for (let pokemon of pokemons) {
         if ( i < 10) {
-          if (pokemon.name.includes(e.target.value.toLowerCase())) {
+          if (pokemon["name"].includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
             i++;
           }
@@ -106,15 +106,16 @@ function App() {
           break;
         }
       };
+      // console.log(results)
       if (!newResults.length) {
         setHiddenResults(true);
         setResults([]);
         return;
       }
       // Check if previous results are the same as new results to avoid unneccessary operations
-      if (JSON.stringify(newResults) === JSON.stringify(results)) {
-        return;
-      }
+      // if (JSON.stringify(newResults) === JSON.stringify(results)) {
+      //   return;
+      // }
       setResults(results => newResults);
       setHiddenResults(false);
     }
@@ -122,9 +123,10 @@ function App() {
 
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
+    const pokemonName = e.target.textContent;
     setIsLoaderShown(true);
     try {
-      const url = e.target.getAttribute('data-url');
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
       setPokemonData(data);
