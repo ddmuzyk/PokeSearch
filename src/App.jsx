@@ -21,7 +21,7 @@ function App() {
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
-  const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+  const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
   const handleImageLoad = () => {
@@ -203,31 +203,35 @@ function App() {
   } else if (route === 'favorites') {
     return (
       <div className='App'>
-        <div className='favorites-wrapper'>
-        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-          <img className='loader' src={rocket} alt='Loading image'></img>
-        </div>
-        <div className='nav-bar'>
-          <h1 className='take-back-button' onClick={() => {
-            setRoute('search');
-            clearData();
-          }}>
-          Take me back
-          </h1>
-        </div>
-          <div className='fav-pokemons-container'>
-            {pokemonKeys.map((key) => {
-              return <FavPokeCard key={key} 
-              pokemon={key}
-              data={`${key}`}
-              handleImageLoad={handleImageLoad}
-              onFavPokemonClick={onFavPokemonClick}
-              setFavoritesUpdated={setFavoritesUpdated}
-              favoritesUpdated={favoritesUpdated}
-              />
-            })}
+        {/* <div className='favorites-wrapper'> */}
+          <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+            <img className='loader' src={rocket} alt='Loading image'></img>
           </div>
-        </div>
+          <div className='nav-bar'>
+            <h1 className='take-back-button' onClick={() => {
+              setRoute('search');
+              clearData();
+            }}>
+            Take me back
+            </h1>
+          </div>
+          {pokemonKeys.length > 0 ? (
+            <div className='fav-pokemons-container'>
+              {pokemonKeys.map((key) => {
+                return <FavPokeCard key={key} 
+                pokemon={key}
+                data={`${key}`}
+                handleImageLoad={handleImageLoad}
+                onFavPokemonClick={onFavPokemonClick}
+                setFavoritesUpdated={setFavoritesUpdated}
+                favoritesUpdated={favoritesUpdated}
+                />
+              })}
+            </div>
+          ) : (
+            <h1 className='no-favorites-message'>Looks like you don't have any favorite pokemons yet...</h1>
+          )}
+        {/* </div> */}
       </div>
     )
   }

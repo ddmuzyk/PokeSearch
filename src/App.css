@@ -199,6 +199,7 @@ html {
   width: 100%;
   background: rgb(204, 169, 103);
   position: fixed;
+  top: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -213,6 +214,21 @@ html {
 .take-back-button:hover {
   text-decoration: underline;
 }
+
+.no-favorites-message {
+  margin: 0 5%;
+  font-family: Pokemon;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+/* .favorites-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+} */
+
+
 
 /* .fav-pokemons-wrapper {
   margin-bottom: 30px;
