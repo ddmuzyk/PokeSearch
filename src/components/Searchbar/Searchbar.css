@@ -53,3 +53,14 @@ input {
     font-size: 1em;
   }
 }
+
+@media screen and (max-width: 330px) {
+  input {
+    font-size: 1em;
+    height: 35px;
+  }
+
+  .search-result {
+    font-size: 0.9em;
+  }
+}
