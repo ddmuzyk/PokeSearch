@@ -98,7 +98,6 @@ function App() {
       let newResults = [];
       let i = 0;
       for (let pokemon of pokemons) {
-        // console.log('operations')
         if ( i < 10) {
           if (pokemon["name"].includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
@@ -159,6 +158,9 @@ function App() {
   if (route === 'search') {
     return (
       <div className='search-route-wrapper'>
+        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+              <img className='loader' src={rocket} alt='Loading image'></img>
+        </div>
         <div className='title-and-searchbox-container'>
           <h1 className='pokesearch-title'>PokeSearch</h1>
           <Searchbar results={results} 
@@ -169,14 +171,12 @@ function App() {
           />
           <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
         </div>
-          <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-            <img className='loader' src={rocket} alt='Loading image'></img>
-          </div>
+          
       </div>
     )
   } else if (route === 'resultsPage') {
     return (
-      <div className='App'>
+      <div className='results-route-wrapper'>
         <div className='buttons-container'>
           <h1 className='back-button' onClick={() => {
             setRoute('search')
