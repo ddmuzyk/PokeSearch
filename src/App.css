@@ -58,22 +58,22 @@ html {
   height: 100vh;
 }
 
-.App {
-  min-height: 100vh;
+/* .App {
+  min-height: 100%;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: Montserrat, sans-serif;
   margin-bottom: 30px;
-}
+} */
 
 .search-route-wrapper {
   height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .buttons-container {
@@ -150,15 +150,6 @@ html {
 
 .loader {
   width: 200px;
-}
-
-.pokesearch-title {
-  margin: 0;
-  position: fixed;
-  top: 100px;
-  font-family: Pokemon;
-  font-size: 4rem;
-  letter-spacing: 5px;
 }
 
 .fav-pokemons-container {
@@ -265,12 +256,5 @@ html {
     font-size: 2rem;
     /* position: fixed;
     top: 50px; */
-  }
-}
-
-@media screen and (max-height: 854px) {
-  .pokesearch-title {
-    position: fixed;
-    top: 20%
   }
 }
