@@ -92,12 +92,13 @@ function App() {
       //     return;
       //   }
       // }
-      if (e.target.value.length > 1 && hiddenResults && !results.length) {
-        return;
-      } 
+      // if (e.target.value.length > 1 && hiddenResults && !results.length) {
+      //   return;
+      // } 
       let newResults = [];
       let i = 0;
       for (let pokemon of pokemons) {
+        // console.log('operations')
         if ( i < 10) {
           if (pokemon["name"].includes(e.target.value.toLowerCase())) {
             newResults.push(pokemon);
@@ -157,8 +158,8 @@ function App() {
 
   if (route === 'search') {
     return (
-      <div className='App'>
-        <div className='search-route-wrapper'>
+      <div className='search-route-wrapper'>
+        <div className='title-and-searchbox-container'>
           <h1 className='pokesearch-title'>PokeSearch</h1>
           <Searchbar results={results} 
           hiddenResults={hiddenResults} 
@@ -167,10 +168,10 @@ function App() {
           onResultClick={onResultClick}
           />
           <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+        </div>
           <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
             <img className='loader' src={rocket} alt='Loading image'></img>
           </div>
-        </div>
       </div>
     )
   } else if (route === 'resultsPage') {
