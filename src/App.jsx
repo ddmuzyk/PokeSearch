@@ -161,6 +161,7 @@ function App() {
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
               <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
+        <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
         <div className='title-and-searchbox-container'>
           <h1 className='pokesearch-title'>PokeSearch</h1>
           <Searchbar results={results} 
@@ -169,14 +170,15 @@ function App() {
           filterResults={filterResults}
           onResultClick={onResultClick}
           />
-          <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
         </div>
-          
       </div>
     )
   } else if (route === 'resultsPage') {
     return (
       <div className='results-route-wrapper'>
+        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+          <img className='loader' src={rocket} alt='Loading image'></img>
+        </div>
         <div className='buttons-container'>
           <h1 className='back-button' onClick={() => {
             setRoute('search')
@@ -192,9 +194,7 @@ function App() {
             <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
           </h1>
         </div>
-        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-          <img className='loader' src={rocket} alt='Loading image'></img>
-        </div>
+        
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
         checkLocalStorageForFavorites={checkLocalStorageForFavorites}
