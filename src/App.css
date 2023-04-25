@@ -153,6 +153,7 @@ html {
 }
 
 .pokesearch-title {
+  margin: 0;
   position: fixed;
   top: 100px;
   font-family: Pokemon;
@@ -261,8 +262,15 @@ html {
 
 @media screen and (max-width: 330px) {
   .pokesearch-title {
-    font-size: 1.2em;
+    font-size: 2rem;
+    /* position: fixed;
+    top: 50px; */
+  }
+}
+
+@media screen and (max-height: 854px) {
+  .pokesearch-title {
     position: fixed;
-    top: 200px;
+    top: 20%
   }
 }

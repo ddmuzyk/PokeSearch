@@ -55,6 +55,12 @@ input {
 }
 
 @media screen and (max-width: 330px) {
+
+  .searchbar-container {
+    position: fixed;
+    top: 230px;
+  }
+
   input {
     font-size: 1em;
     height: 35px;
@@ -62,5 +68,14 @@ input {
 
   .search-result {
     font-size: 0.9em;
+  }
+}
+
+@media screen and (max-height: 854px) {
+
+
+  .searchbar-container {
+    position: fixed;
+    top: 20%;
   }
 }

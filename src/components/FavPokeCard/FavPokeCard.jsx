@@ -13,7 +13,12 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
     // console.log(pokemon);
     // setIsItemDeleted(true)
     delete favPokemons[pokemon];
-    localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+    // localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+    if (!Object.keys(favPokemons).length) {
+      localStorage.removeItem('favPokemons');
+    } else {
+      localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+    }
     // Not the greatest way to cause a rerender :)
     setFavoritesUpdated(!favoritesUpdated);
   }
