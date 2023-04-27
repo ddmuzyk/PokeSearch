@@ -64,7 +64,7 @@ html {
 } */
 
 .search-route-wrapper {
-  height: 100vh;
+  /* height: 100vh; */
   margin-top: 100px;
   /* display: flex;
   flex-direction: column;
@@ -108,9 +108,9 @@ html {
   background: rgb(204, 169, 103);
   position: fixed;
   top: 0;
-  /* display: flex;
-  justify-content: flex-end;
-  align-items: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
 
