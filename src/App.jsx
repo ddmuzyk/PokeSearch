@@ -161,7 +161,9 @@ function App() {
               <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
         <div className='nav-bar'>
-          <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+          <span className='search-nav-btns'>
+            <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+          </span>
         </div>
         <div className='title-and-searchbox-container'>
           <h1 className='pokesearch-title'>PokeSearch</h1>

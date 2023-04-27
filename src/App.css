@@ -49,7 +49,7 @@
 
 html {
   background: rgb(224, 192, 103);
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 
@@ -108,9 +108,9 @@ html {
   background: rgb(204, 169, 103);
   position: fixed;
   top: 0;
-  display: flex;
+  /* display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: center; */
   z-index: 1000;
 }
 
