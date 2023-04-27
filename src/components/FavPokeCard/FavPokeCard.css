@@ -65,9 +65,26 @@
   margin: 0;
   position: relative;
   bottom: 10px;
+  user-select: none;
 }
 
 .remove-fav:hover {
   transform: scale(1.1);
   color: rgb(185, 39, 39);
+}
+
+.take-back-button {
+  margin: 0 40px 0 0;
+  cursor: pointer;
+}
+
+.take-back-button:hover {
+  text-decoration: underline;
+}
+
+.no-favorites-message {
+  margin: 0 5%;
+  font-family: Pokemon;
+  letter-spacing: 4px;
+  text-align: center;
 }

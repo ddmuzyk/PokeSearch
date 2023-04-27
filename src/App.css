@@ -52,11 +52,6 @@ html {
   overflow-x: hidden;
 }
 
-#root {
-  
-  width: 100vw;
-  height: 100vh;
-}
 
 /* .App {
   min-height: 100%;
@@ -69,83 +64,24 @@ html {
 } */
 
 .search-route-wrapper {
-  height: 100vh;
+  /* height: 100vh; */
+  margin-top: 100px;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; */
 }
 
-.buttons-container {
+.svg-container {
+  height: 100%;
+  width: 100%;
+  background: rgb(224, 192, 103);
   position: fixed;
   top: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  justify-content: space-between;
-  width: 95vw;
-}
-
-.back-button {
-  /* position: absolute; */
-  background: rgb(165, 209, 169);
-  height: fit-content;
-  /* top: 20px;
-  left: 70px; */
-  padding: 10px 30px;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.3);
-  user-select: none;
-}
-
-.back-button:hover {
-  filter: brightness(90%);
-
-}
-
-.back-button:active {
-  transform: translateY(2px);
-}
-
-
-
-.favorites-button {
-  /* position: absolute; */
-  background: rgb(102, 223, 112);
-  /* top: 20px;
-  right: 70px; */
-  display: flex;
-  height: fit-content;
-  cursor: pointer;
-  padding: 10px 30px;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.3);
-  user-select: none;
-}
-
-.favorites-button:hover {
-  filter: brightness(90%);
-}
-
-.favorites-button:active {
-  transform: translateY(2px);
-}
-
-.favorites-icon {
-  width: 40px;
-}
-
-.svg-container {
-  height: 100vh;
-  width: 100vw;
-  background: rgb(224, 192, 103);
-  position: absolute;
-  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .loader {
@@ -166,55 +102,19 @@ html {
   height: auto;
 }
 
-.go-to-favorites-button {
-  position: absolute;
-  top: 20px;
-  right: 3%;
-  cursor: pointer;
-  margin: 0;
-}
-
-.go-to-favorites-button:hover {
-  text-decoration: underline;
-}
-
-.back-to-favorites-button {
-  position: relative;
-  right: 20px;
-}
-
-.back-to-favorites-button:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 .nav-bar {
   height: 100px;
-  width: 100%;
+  width: 100vw;
   background: rgb(204, 169, 103);
   position: fixed;
   top: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-.take-back-button {
-  margin: 0 40px 0 0;
-  cursor: pointer;
-}
 
-.take-back-button:hover {
-  text-decoration: underline;
-}
-
-.no-favorites-message {
-  margin: 0 5%;
-  font-family: Pokemon;
-  letter-spacing: 4px;
-  text-align: center;
-}
 
 /* .favorites-wrapper {
   width: 100vw;
@@ -247,7 +147,7 @@ html {
   }
 
   .go-to-favorites-button {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 }
 
