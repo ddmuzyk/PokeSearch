@@ -1,9 +1,12 @@
 import React from "react";
+import heartEmpty from '../../img/heart-regular.svg';
+import heartFull from '../../img/heart-solid.svg';
 import './PokeCard.css';
 
-const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites}) => {
+const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, addedToFavorites, onAddToFavoritesClick}) => {
   return (
     <div className="pokecard-container">
+      <img className='favorites-icon' onClick={onAddToFavoritesClick} src={addedToFavorites ? heartFull : heartEmpty}/>
       <div className="img-container">
         <img className="pokemon-img"
         src={pokemonData.sprites.other['official-artwork'].front_default} 

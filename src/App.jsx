@@ -3,8 +3,7 @@ import pokemons from "./constants/pokemons";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg';
 import rocket from './rocket.svg';
-import heartEmpty from './img/heart-regular.svg';
-import heartFull from './img/heart-solid.svg';
+
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import FavPokeCard from './components/FavPokeCard/FavPokeCard';
@@ -181,7 +180,8 @@ function App() {
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
-        <div className='buttons-container'>
+        <div className='nav-bar'>
+          <div className='buttons-container'>
           <h1 className='back-button' onClick={() => {
             setRoute('search')
             clearData()
@@ -192,14 +192,17 @@ function App() {
             setRoute('favorites');
             clearData();
           }}>Favorites</h1>
-          <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
+          {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
             <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
-          </h1>
+          </h1> */}
+          </div>
         </div>
         
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
         checkLocalStorageForFavorites={checkLocalStorageForFavorites}
+        addedToFavorites={addedToFavorites}
+        onAddToFavoritesClick={onAddToFavoritesClick}
         />
       </div>
       )
