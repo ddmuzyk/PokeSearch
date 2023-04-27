@@ -161,7 +161,9 @@ function App() {
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
               <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
-        <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+        <div className='nav-bar'>
+          <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+        </div>
         <div className='title-and-searchbox-container'>
           <h1 className='pokesearch-title'>PokeSearch</h1>
           <Searchbar results={results} 

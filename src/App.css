@@ -70,6 +70,7 @@ html {
 
 .search-route-wrapper {
   height: 100vh;
+  margin-top: 100px;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,9 +171,9 @@ html {
   /* position: fixed; */
   /* top: 20px;
   right: 3%; */
-  position: relative;
+  
   cursor: pointer;
-  margin: 0;
+  margin: 0 30px 0 0 ;
   z-index: 2;
 }
 
@@ -249,7 +250,7 @@ html {
   }
 
   .go-to-favorites-button {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 }
 

@@ -17,7 +17,7 @@ input {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
 }
 
 .searchbar-container {
