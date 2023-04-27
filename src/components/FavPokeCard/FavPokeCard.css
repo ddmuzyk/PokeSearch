@@ -65,6 +65,7 @@
   margin: 0;
   position: relative;
   bottom: 10px;
+  user-select: none;
 }
 
 .remove-fav:hover {
