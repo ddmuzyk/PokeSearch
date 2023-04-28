@@ -72,6 +72,10 @@ input {
   background: orange;
 }
 
+.selected {
+  background: orange;
+}
+
 .pokesearch-title {
   margin: 0;
   font-family: Pokemon;

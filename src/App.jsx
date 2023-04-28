@@ -20,6 +20,7 @@ function App() {
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+  const [selectedResult, setSelectedResult] = useState(-1);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -170,8 +171,11 @@ function App() {
           <Searchbar results={results} 
           hiddenResults={hiddenResults} 
           inputValue={inputValue}
+          setInputValue={setInputValue}
           filterResults={filterResults}
           onResultClick={onResultClick}
+          selectedResult={selectedResult}
+          setSelectedResult={setSelectedResult}
           />
         </div>
       </div>
