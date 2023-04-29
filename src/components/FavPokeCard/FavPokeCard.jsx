@@ -27,7 +27,7 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
     <div className="fav-pokecard-container">
       <div className="fav-img-container" >
         <img className="fav-pokemon-img"
-        src={favPokemons[pokemon].sprites.other['official-artwork'].front_default}
+        src={favPokemons[pokemon].imgUrl}
         alt="Pokemon Image"
         onLoad={handleImageLoad}
         />
