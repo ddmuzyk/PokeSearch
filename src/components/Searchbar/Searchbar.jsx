@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './Searchbar.css';
 
 
-const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputValue, onResultClick, selectedResult, setSelectedResult}) => {
+const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputValue, onResultClick, selectedResult, setSelectedResult, onEnterClick}) => {
 
   const onResultHover = (e) => {
     // const pokemonName = e.target.textContent;
@@ -34,6 +34,8 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
           return;
         }
         setSelectedResult(selectedResult-1)
+      } else if (e.key === 'Enter') {
+        onEnterClick();
       }
       
     }
@@ -50,6 +52,7 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
           setSelectedResult(0);
         }
       }} placeholder="Search pokemons"
+      spellCheck={false}
       style={{borderRadius : hiddenResults === false ? '10px 10px 0 0' : '10px'}}
       onKeyDown={(e) => handleKeyPress(e)}
       />

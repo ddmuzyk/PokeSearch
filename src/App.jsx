@@ -51,6 +51,10 @@ function App() {
     if (localStorage.getItem('favPokemons')) {
       let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
+        if (pokemonKeys.length === 30) {
+          console.log('Maximum number (30) of favorite pokemons reached.');
+          return;
+        }
         favPokemons[pokemonKey] = pokemonData;
         localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
         setAddedToFavorites(true);
@@ -137,6 +141,23 @@ function App() {
     }
   }
 
+  const onEnterClick =  async () => {
+    const pokemonName = results[selectedResult].name;
+    // console.log(pokemonName);
+    setIsLoaderShown(true);
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setPokemonData(data);
+      setRoute('resultsPage');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  
+
   const checkLocalStorageForFavorites = () => {
     if (localStorage.getItem('favPokemons')) {
       const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
@@ -176,6 +197,7 @@ function App() {
           onResultClick={onResultClick}
           selectedResult={selectedResult}
           setSelectedResult={setSelectedResult}
+          onEnterClick={onEnterClick}
           />
         </div>
       </div>
