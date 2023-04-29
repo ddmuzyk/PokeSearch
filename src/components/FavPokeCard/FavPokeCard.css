@@ -82,8 +82,21 @@
   text-decoration: underline;
 }
 
+.favorites-route-wrapper {
+  height: 100%;
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+.no-fav-message-container {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .no-favorites-message {
-  margin: 0 5%;
+  /* margin: 0 5%; */
   font-family: Pokemon;
   letter-spacing: 4px;
   text-align: center;
