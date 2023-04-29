@@ -236,36 +236,36 @@ function App() {
       )
   } else if (route === 'favorites') {
     return (
-      <div className='App'>
-        {/* <div className='favorites-wrapper'> */}
-          <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-            <img className='loader' src={rocket} alt='Loading image'></img>
+      <div className='favorites-route-wrapper'>
+        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+          <img className='loader' src={rocket} alt='Loading image'></img>
+        </div>
+        <div className='nav-bar'>
+          <h1 className='take-back-button' onClick={() => {
+            setRoute('search');
+            clearData();
+          }}>
+          Take me back
+          </h1>
+        </div>
+        {pokemonKeys.length > 0 ? (
+          <div className='fav-pokemons-container'>
+            {pokemonKeys.map((key) => {
+              return <FavPokeCard key={key} 
+              pokemon={key}
+              data={`${key}`}
+              handleImageLoad={handleImageLoad}
+              onFavPokemonClick={onFavPokemonClick}
+              setFavoritesUpdated={setFavoritesUpdated}
+              favoritesUpdated={favoritesUpdated}
+              />
+            })}
           </div>
-          <div className='nav-bar'>
-            <h1 className='take-back-button' onClick={() => {
-              setRoute('search');
-              clearData();
-            }}>
-            Take me back
-            </h1>
-          </div>
-          {pokemonKeys.length > 0 ? (
-            <div className='fav-pokemons-container'>
-              {pokemonKeys.map((key) => {
-                return <FavPokeCard key={key} 
-                pokemon={key}
-                data={`${key}`}
-                handleImageLoad={handleImageLoad}
-                onFavPokemonClick={onFavPokemonClick}
-                setFavoritesUpdated={setFavoritesUpdated}
-                favoritesUpdated={favoritesUpdated}
-                />
-              })}
-            </div>
-          ) : (
+        ) : (
+          <div className='no-fav-message-container'>
             <h1 className='no-favorites-message'>Looks like you don't have any favorite pokemons yet...</h1>
-          )}
-        {/* </div> */}
+          </div>
+        )}
       </div>
     )
   }
