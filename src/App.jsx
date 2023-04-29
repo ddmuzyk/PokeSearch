@@ -48,14 +48,18 @@ function App() {
 
   const onAddToFavoritesClick = () => {
     const pokemonKey = pokemonData.name;
+    const pokemonImg = pokemonData.sprites.other['official-artwork'].front_default;
     if (localStorage.getItem('favPokemons')) {
       let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
-        if (pokemonKeys.length === 30) {
-          console.log('Maximum number (30) of favorite pokemons reached.');
-          return;
-        }
-        favPokemons[pokemonKey] = pokemonData;
+        // if (pokemonKeys.length === 30) {
+        //   console.log('Maximum number (30) of favorite pokemons reached.');
+        //   return;
+        // }
+        favPokemons[pokemonKey] = {
+          name: pokemonKey,
+          imgUrl: pokemonImg
+        };
         localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
         setAddedToFavorites(true);
       } else {
@@ -69,7 +73,14 @@ function App() {
         }
       }
     } else {
-      localStorage.setItem('favPokemons', JSON.stringify({[pokemonKey]: pokemonData}));
+      localStorage.setItem('favPokemons', JSON.stringify(
+        {
+          [pokemonKey]: {
+            name: pokemonKey,
+            imgUrl: pokemonImg
+          }
+        }
+        ));
       setAddedToFavorites(true);
     }
     // console.log(localStorage.getItem('favPokemons') === JSON.stringify(pokemonData))
@@ -168,12 +179,18 @@ function App() {
     }
   }
 
-  const onFavPokemonClick = (e) => {
+  const onFavPokemonClick = async (e) => {
     setIsLoaderShown(true);
     const pokemonKey = e.target.getAttribute('data-pokemon');
-    const newData = favPokemons[pokemonKey];
-    setPokemonData(newData);
-    setRoute('resultsPage');
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonKey}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setPokemonData(data);
+      setRoute('resultsPage');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   if (route === 'search') {
