@@ -20,6 +20,7 @@ function App() {
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+  const [selectedResult, setSelectedResult] = useState(-1);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -50,6 +51,10 @@ function App() {
     if (localStorage.getItem('favPokemons')) {
       let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
+        if (pokemonKeys.length === 30) {
+          console.log('Maximum number (30) of favorite pokemons reached.');
+          return;
+        }
         favPokemons[pokemonKey] = pokemonData;
         localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
         setAddedToFavorites(true);
@@ -136,6 +141,23 @@ function App() {
     }
   }
 
+  const onEnterClick =  async () => {
+    const pokemonName = results[selectedResult].name;
+    // console.log(pokemonName);
+    setIsLoaderShown(true);
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setPokemonData(data);
+      setRoute('resultsPage');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  
+
   const checkLocalStorageForFavorites = () => {
     if (localStorage.getItem('favPokemons')) {
       const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
@@ -170,8 +192,12 @@ function App() {
           <Searchbar results={results} 
           hiddenResults={hiddenResults} 
           inputValue={inputValue}
+          setInputValue={setInputValue}
           filterResults={filterResults}
           onResultClick={onResultClick}
+          selectedResult={selectedResult}
+          setSelectedResult={setSelectedResult}
+          onEnterClick={onEnterClick}
           />
         </div>
       </div>
