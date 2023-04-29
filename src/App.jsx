@@ -112,12 +112,17 @@ function App() {
       // } 
       let newResults = [];
       let i = 0;
+      let index = 0;
       for (let pokemon of pokemons) {
+        
         if ( i < 10) {
           if (pokemon["name"].includes(e.target.value.toLowerCase())) {
+            // Index added so in the future I can add arrows to move between pokemons
+            pokemon.index = index;
             newResults.push(pokemon);
             i++;
           }
+          index++;
         } else {
           break;
         }
