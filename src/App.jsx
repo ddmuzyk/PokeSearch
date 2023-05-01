@@ -158,13 +158,13 @@ function App() {
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
     const pokemonName = e.target.textContent;
+    window.scrollTo(top);
     setIsLoaderShown(true);
     try {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
       setPokemonData(data);
-      window.scrollTo(top);
       setRoute('resultsPage');
     } catch (err) {
       console.log(err);
