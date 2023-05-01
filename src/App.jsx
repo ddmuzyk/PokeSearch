@@ -24,6 +24,18 @@ function App() {
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
+  useEffect(() => {
+    if (route === 'search') {
+      document.title = "PokeSearch";
+    } else if (route === 'resultsPage') {
+      const pokemonName = pokemonData.name;
+      document.title = `${pokemonName[0].toUpperCase()}${pokemonName.slice(1, pokemonName.length)} | PokeSearch`;
+    } else if (route === 'favorites') {
+      document.title = 'Favorites | PokeSearch';
+    }
+    
+  }, [route])
+
   const handleImageLoad = () => {
     // if (localStorage.getItem('favPokemons')) {
     //   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
@@ -44,6 +56,7 @@ function App() {
     // setRoute('search');
     setIsImageLoaded(false);
     setAddedToFavorites(false);
+    setSelectedResult(-1);
   }
 
   const onAddToFavoritesClick = () => {
@@ -158,17 +171,19 @@ function App() {
   }
 
   const onEnterClick =  async () => {
-    const pokemonName = results[selectedResult].name;
-    // console.log(pokemonName);
-    setIsLoaderShown(true);
-    try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setPokemonData(data);
-      setRoute('resultsPage');
-    } catch (err) {
-      console.log(err);
+    if (selectedResult > -1) {
+      const pokemonName = results[selectedResult].name;
+      // console.log(pokemonName);
+      setIsLoaderShown(true);
+      try {
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setPokemonData(data);
+        setRoute('resultsPage');
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 
