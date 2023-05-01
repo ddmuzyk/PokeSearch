@@ -38,7 +38,7 @@ input {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  /* margin-top: 10vh; */
+  padding-top: 100px;
 }
 
 .searchbar-container {
@@ -54,6 +54,7 @@ input {
   background: rgb(161, 153, 138);
   border-radius: 0 0 10px 10px;
   padding-top: 20px;
+  user-select: none;
 }
 
 .search-result:last-of-type {
@@ -66,6 +67,7 @@ input {
   margin: 0;
   padding: 7px;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .search-result:hover {

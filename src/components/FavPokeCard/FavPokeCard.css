@@ -1,8 +1,27 @@
+.favorites-route-wrapper {
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.fav-pokemons-container {
+  display: flex;
+  /* width: 100vw; */
+  padding-top: 150px;
+  margin-bottom: 30px;
+  /* height: 100%; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: auto;
+}
+
 .fav-pokecard-container {
   display: flex;
   /* width: 50%; */
   width: 300px;
-  min-height: 500px;
+  /* min-height: 500px; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -80,12 +99,6 @@
 
 .take-back-button:hover {
   text-decoration: underline;
-}
-
-.favorites-route-wrapper {
-  height: 100%;
-  margin-top: 100px;
-  padding-bottom: 100px;
 }
 
 .no-fav-message-container {
