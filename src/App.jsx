@@ -164,6 +164,7 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       setPokemonData(data);
+      window.scrollTo(top);
       setRoute('resultsPage');
     } catch (err) {
       console.log(err);
@@ -180,6 +181,7 @@ function App() {
         const response = await fetch(url);
         const data = await response.json();
         setPokemonData(data);
+        window.scrollTo(top);
         setRoute('resultsPage');
       } catch (err) {
         console.log(err);
@@ -200,6 +202,7 @@ function App() {
   }
 
   const onFavPokemonClick = async (e) => {
+    // setIsImageLoaded(false);
     setIsLoaderShown(true);
     const pokemonKey = e.target.getAttribute('data-pokemon');
     try {
@@ -207,6 +210,7 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       setPokemonData(data);
+      window.scrollTo(top);
       setRoute('resultsPage');
     } catch (err) {
       console.log(err);
@@ -221,7 +225,11 @@ function App() {
         </div>
         <div className='nav-bar'>
           <span className='search-nav-btns'>
-            <h1 className='go-to-favorites-button' onClick={() => setRoute('favorites')}>Go to Favorites</h1>
+            <h1 className='go-to-favorites-button' onClick={() => {
+              clearData();
+              setRoute('favorites');
+            }
+            }>Go to Favorites</h1>
           </span>
         </div>
         <div className='title-and-searchbox-container'>
@@ -248,14 +256,14 @@ function App() {
         <div className='nav-bar'>
           <div className='buttons-container'>
           <h1 className='back-button' onClick={() => {
-            setRoute('search')
-            clearData()
+            clearData();
+            setRoute('search');
             }}>
             Search
           </h1>
           <h1 className='back-to-favorites-button' onClick={() => {
-            setRoute('favorites');
             clearData();
+            setRoute('favorites');
           }}>Favorites</h1>
           {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
             <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
@@ -279,8 +287,8 @@ function App() {
         </div>
         <div className='nav-bar'>
           <h1 className='take-back-button' onClick={() => {
-            setRoute('search');
             clearData();
+            setRoute('search');
           }}>
           Take me back
           </h1>

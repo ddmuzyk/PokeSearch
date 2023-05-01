@@ -47,10 +47,7 @@
   src: url(PokemonHollowNormal-pyPZ.ttf);
 }
 
-html {
-  background: rgb(224, 192, 103);
-  /* overflow-x: hidden; */
-}
+
 
 
 /* .App {
@@ -64,8 +61,9 @@ html {
 } */
 
 .search-route-wrapper {
-  /* height: 100vh; */
-  margin-top: 100px;
+  min-height: 100%;
+  /* margin-top: 100px; */
+  /* box-sizing: border-box; */
   /* display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,20 +84,6 @@ html {
 
 .loader {
   width: 200px;
-}
-
-.fav-pokemons-container {
-  display: flex;
-  /* width: 100vw; */
-  margin-top: 150px;
-  margin-bottom: 30px;
-  /* height: 100%; */
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  height: auto;
 }
 
 .nav-bar {
