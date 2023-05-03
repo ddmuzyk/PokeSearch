@@ -1,6 +1,6 @@
 .favorites-route-wrapper {
   height: 100%;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 
 .fav-pokemons-container {
@@ -21,12 +21,13 @@
 .fav-pokecard-container {
   display: flex;
   /* width: 50%; */
-  width: 300px;
+  height: 600px;
+  width: 350px;
   /* min-height: 500px; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  /* gap: 20px; */
   background: rgb(78, 163, 163);
   padding: 10px;
   border-radius: 20px;
@@ -55,12 +56,14 @@
 
 .fav-pokemon-description {
   text-align: center;
+  height: 100px;
   margin: 0;
+  /* margin: 0 0 70px 0; */
   color: rgb(61, 59, 44);
 }
 
 .load-fav-button {
-  margin: 0;
+  margin: 50px 0 0 0 ;
   height: fit-content;
   color: rgb(36, 35, 35);
   transition: all 0.05s;
@@ -82,7 +85,7 @@
 .remove-fav {
   cursor: pointer;
   transition: all 0.05s;
-  margin: 0;
+  margin: 50px 0 0 0 ;
   position: relative;
   bottom: 10px;
   user-select: none;
@@ -91,6 +94,14 @@
 .remove-fav:hover {
   transform: scale(1.1);
   color: rgb(185, 39, 39);
+}
+
+.fav-route-btns-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .take-back-button {
@@ -103,7 +114,8 @@
 }
 
 .no-fav-message-container {
-  height: 60vh;
+  height: 100%;
+  margin: 0 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,4 +126,41 @@
   font-family: Pokemon;
   letter-spacing: 4px;
   text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .take-back-button {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 439px) {
+
+  .fav-pokecard-container {
+    height: 400px;
+    width: 70vw;
+  }
+
+  .no-favorites-message {
+    font-size: 20px;
+  }
+
+  .fav-pokemon-img {
+    width: 170px;
+  }
+
+  .fav-pokemon-description {
+    font-size: 1em;
+    height: 60px;
+  }
+
+  .load-fav-button {
+    font-size: 0.95em;
+    margin-top: 40px;
+  }
+
+  .remove-fav {
+    font-size: 0.9em;
+    margin-top: 30px;
+  }
 }

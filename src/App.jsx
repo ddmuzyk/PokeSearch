@@ -166,8 +166,10 @@ function App() {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
+      
       setPokemonData(data);
       setRoute('resultsPage');
+      window.scrollTo(top);
     } catch (err) {
       console.log(err);
     }
@@ -183,8 +185,8 @@ function App() {
         const response = await fetch(url);
         const data = await response.json();
         setPokemonData(data);
-        window.scrollTo(top);
         setRoute('resultsPage');
+        window.scrollTo(top);
       } catch (err) {
         console.log(err);
       }
@@ -262,20 +264,20 @@ function App() {
         </div>
         <div className='nav-bar'>
           <div className='buttons-container'>
-          <h1 className='back-button' onClick={() => {
-            clearData();
-            setRoute('search');
-            setScrollPosition(0);
-            }}>
-            Search
-          </h1>
-          <h1 className='back-to-favorites-button' onClick={() => {
-            clearData();
-            setRoute('favorites');
-          }}>Favorites</h1>
-          {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
-            <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
-          </h1> */}
+            <h1 className='back-button' onClick={() => {
+              clearData();
+              setRoute('search');
+              setScrollPosition(0);
+              }}>
+              Search
+            </h1>
+            <h1 className='back-to-favorites-button' onClick={() => {
+              clearData();
+              setRoute('favorites');
+            }}>Favorites</h1>
+            {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
+              <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
+            </h1> */}
           </div>
         </div>
         
@@ -294,13 +296,15 @@ function App() {
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
         <div className='nav-bar'>
-          <h1 className='take-back-button' onClick={() => {
-            clearData();
-            setRoute('search');
-            setScrollPosition(0);
-          }}>
-          Take me back
-          </h1>
+          <span className='fav-route-btns-container'>
+            <h1 className='take-back-button' onClick={() => {
+              clearData();
+              setRoute('search');
+              setScrollPosition(0);
+            }}>
+            Take me back
+            </h1>
+          </span>
         </div>
         {pokemonKeys.length > 0 ? (
           <div className='fav-pokemons-container'>

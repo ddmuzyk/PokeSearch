@@ -27,7 +27,7 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
         // onLoad={handleImageLoad}
         />
       </div>
-        <h2 className="fav-pokemon-description">{pokemon.toUpperCase()}</h2>
+        <h2 className="fav-pokemon-description" >{pokemon.toUpperCase()}</h2>
         <h2 className="load-fav-button" data-pokemon={data} onClick={(e) => {
           onFavPokemonClick(e)
           }}>
@@ -36,6 +36,8 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
         <h3 className="remove-fav" data-pokemon={data} onClick={(e) => removeFavorite(e)}>Remove</h3>
     </div>
   )
+
+  // style={{fontSize: pokemon.length > 16 ? '1em' : '1.5em'}}
 }
 
 export default FavPokeCard;
