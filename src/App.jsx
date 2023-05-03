@@ -21,6 +21,8 @@ function App() {
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const [selectedResult, setSelectedResult] = useState(-1);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [componentsRendered, setComponentsRendered] = useState(0);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -203,6 +205,7 @@ function App() {
 
   const onFavPokemonClick = async (e) => {
     // setIsImageLoaded(false);
+    setScrollPosition(window.scrollY);
     setIsLoaderShown(true);
     const pokemonKey = e.target.getAttribute('data-pokemon');
     try {
@@ -216,6 +219,10 @@ function App() {
       console.log(err);
     }
   }
+
+  // const handleFavRendered = () => {
+  //   setComponentsRendered(componentsRendered + 1);
+  // }
 
   if (route === 'search') {
     return (
@@ -258,6 +265,7 @@ function App() {
           <h1 className='back-button' onClick={() => {
             clearData();
             setRoute('search');
+            setScrollPosition(0);
             }}>
             Search
           </h1>
@@ -289,6 +297,7 @@ function App() {
           <h1 className='take-back-button' onClick={() => {
             clearData();
             setRoute('search');
+            setScrollPosition(0);
           }}>
           Take me back
           </h1>
@@ -303,6 +312,7 @@ function App() {
               onFavPokemonClick={onFavPokemonClick}
               setFavoritesUpdated={setFavoritesUpdated}
               favoritesUpdated={favoritesUpdated}
+              scrollPosition={scrollPosition}
               />
             })}
           </div>
