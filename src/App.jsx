@@ -21,6 +21,8 @@ function App() {
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const [selectedResult, setSelectedResult] = useState(-1);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [componentsRendered, setComponentsRendered] = useState(0);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -164,8 +166,10 @@ function App() {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
+      
       setPokemonData(data);
       setRoute('resultsPage');
+      window.scrollTo(top);
     } catch (err) {
       console.log(err);
     }
@@ -181,8 +185,8 @@ function App() {
         const response = await fetch(url);
         const data = await response.json();
         setPokemonData(data);
-        window.scrollTo(top);
         setRoute('resultsPage');
+        window.scrollTo(top);
       } catch (err) {
         console.log(err);
       }
@@ -203,6 +207,7 @@ function App() {
 
   const onFavPokemonClick = async (e) => {
     // setIsImageLoaded(false);
+    setScrollPosition(window.scrollY);
     setIsLoaderShown(true);
     const pokemonKey = e.target.getAttribute('data-pokemon');
     try {
@@ -216,6 +221,10 @@ function App() {
       console.log(err);
     }
   }
+
+  // const handleFavRendered = () => {
+  //   setComponentsRendered(componentsRendered + 1);
+  // }
 
   if (route === 'search') {
     return (
@@ -255,19 +264,20 @@ function App() {
         </div>
         <div className='nav-bar'>
           <div className='buttons-container'>
-          <h1 className='back-button' onClick={() => {
-            clearData();
-            setRoute('search');
-            }}>
-            Search
-          </h1>
-          <h1 className='back-to-favorites-button' onClick={() => {
-            clearData();
-            setRoute('favorites');
-          }}>Favorites</h1>
-          {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
-            <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
-          </h1> */}
+            <h1 className='back-button' onClick={() => {
+              clearData();
+              setRoute('search');
+              setScrollPosition(0);
+              }}>
+              Search
+            </h1>
+            <h1 className='back-to-favorites-button' onClick={() => {
+              clearData();
+              setRoute('favorites');
+            }}>Favorites</h1>
+            {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
+              <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
+            </h1> */}
           </div>
         </div>
         
@@ -286,12 +296,15 @@ function App() {
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
         <div className='nav-bar'>
-          <h1 className='take-back-button' onClick={() => {
-            clearData();
-            setRoute('search');
-          }}>
-          Take me back
-          </h1>
+          <span className='fav-route-btns-container'>
+            <h1 className='take-back-button' onClick={() => {
+              clearData();
+              setRoute('search');
+              setScrollPosition(0);
+            }}>
+            Take me back
+            </h1>
+          </span>
         </div>
         {pokemonKeys.length > 0 ? (
           <div className='fav-pokemons-container'>
@@ -303,6 +316,7 @@ function App() {
               onFavPokemonClick={onFavPokemonClick}
               setFavoritesUpdated={setFavoritesUpdated}
               favoritesUpdated={favoritesUpdated}
+              scrollPosition={scrollPosition}
               />
             })}
           </div>
