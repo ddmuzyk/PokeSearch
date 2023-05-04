@@ -1,0 +1,17 @@
+.base-stat {
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  gap: 30px;
+}
+
+.base-stat-item {
+  font-size: 18px;
+}
+
+.barchart {
+  background-color: rgb(240, 178, 127);
+  height: 5px;
+  width: 100px;
+  border-radius: 5px;
+}

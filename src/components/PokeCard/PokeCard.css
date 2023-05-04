@@ -10,9 +10,10 @@
 
 .pokecard-container {
   display: flex;
-  width: 50%;
+  width: 80%;
+  min-height: 100vh;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   background: rgb(78, 163, 163);
   margin-top: 25px;
   padding: 30px;
