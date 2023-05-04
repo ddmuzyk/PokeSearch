@@ -11,15 +11,11 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
         <img className="pokemon-img"
         src={pokemonData.sprites.other['official-artwork'].front_default} 
         alt="Pokemon Image"
-        onError={() => {
-          console.log('oooops')
-          checkLocalStorageForFavorites();
-          handleImageLoad();
-        }}
         onLoad={() => {
           checkLocalStorageForFavorites();
           handleImageLoad();
           }}
+          onClick={() => console.log(pokemonData)}
         />
       </div>
       <h2 className="pokemon-description">{pokemonData.name.toUpperCase()}</h2>
