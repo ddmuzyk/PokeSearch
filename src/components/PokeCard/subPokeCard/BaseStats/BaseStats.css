@@ -9,9 +9,38 @@
   font-size: 18px;
 }
 
+.barchart-container {
+  width: 25vw;
+}
+
 .barchart {
   background-color: rgb(240, 178, 127);
-  height: 5px;
-  width: 100px;
+  height: 10px;
+  /* width: 100px; */
   border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.164);
+}
+
+#hp {
+  background-color: rgb(185, 44, 44);
+}
+
+#attack {
+  background-color: rgb(201, 224, 72);
+}
+
+#defense {
+  background-color: rgb(202, 44, 194);
+}
+
+#special-attack {
+  background-color: rgb(131, 255, 214);
+}
+
+#special-defense {
+  background-color: darkslateblue;
+}
+
+#speed {
+  background-color: palegreen;
 }
