@@ -27,7 +27,7 @@
 }
 
 .pokemon-img {
-  width: 300px;
+  width: 400px;
 }
 
 .pokemon-description {
@@ -103,13 +103,30 @@
   transform: translateY(2px);
 }
 
-.favorites-icon {
-  width: 40px;
-  cursor: pointer;
-  user-select: none;
+.fav-icon-container {
+  display: flex;
+  justify-self: center;
+  justify-content: flex-end;
 }
 
-/*  */
+.favorites-icon {
+  width: 70px;
+  cursor: pointer;
+  user-select: none;
+  margin-right: 30px;
+}
+
+/* subcomponents */
+
+.info-container {
+  margin-top: 200px;
+  display: flex;
+}
+
+.subcomponent-title {
+  font-size: 2rem;
+  flex-wrap: wrap;
+}
 
 @media screen and (max-width: 430px) {
   .pokecard-container {
