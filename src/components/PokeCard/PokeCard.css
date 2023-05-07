@@ -10,9 +10,10 @@
 
 .pokecard-container {
   display: flex;
-  width: 50%;
+  width: 80%;
+  min-height: 100vh;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   background: rgb(78, 163, 163);
   margin-top: 25px;
   padding: 30px;
@@ -26,7 +27,7 @@
 }
 
 .pokemon-img {
-  width: 300px;
+  width: 360px;
 }
 
 .pokemon-description {
@@ -102,13 +103,52 @@
   transform: translateY(2px);
 }
 
-.favorites-icon {
-  width: 40px;
-  cursor: pointer;
-  user-select: none;
+.fav-icon-container {
+  display: flex;
+  justify-self: center;
+  justify-content: flex-end;
 }
 
-/*  */
+.favorites-icon {
+  width: 70px;
+  cursor: pointer;
+  user-select: none;
+  margin-right: 30px;
+}
+
+/* subcomponents */
+
+.info-container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.subcomponent-title {
+  font-size: 2rem;
+  /* flex-wrap: wrap; */
+}
+
+.pokefont {
+  font-family: Pokemon, Montserrat;
+  letter-spacing: 3px;
+  font-size: 18px;
+  height: 18px;
+}
+
+th, td {
+  line-height: 1.5;
+  vertical-align: middle;
+  /* padding: 4px 10px; */
+}
+
+.data-value {
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 10px;
+}
 
 @media screen and (max-width: 430px) {
   .pokecard-container {

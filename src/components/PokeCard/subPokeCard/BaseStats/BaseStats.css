@@ -1,0 +1,65 @@
+.base-stats-wrapper {
+  width: 300px;
+}
+
+.base-stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* .base-stat {
+  display: flex;
+  height: 20px;
+  justify-content: flex-start;
+  align-items: center;
+} */
+
+.base-stat-item {
+  font-size: 18px;
+  font-weight: lighter;
+  white-space: nowrap;
+}
+
+.barchart-container {
+  /* width: 60vw; */
+  border-radius: 5px;
+  /* border: 0.2px solid rgba(39, 37, 37, 0.486); */
+}
+
+.barchart {
+  background-color: rgb(240, 178, 127);
+  height: 10px;
+  /* width: 100px; */
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.164);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgb(161, 99, 99);
+}
+
+#hp {
+  background-color: rgb(185, 44, 44);
+}
+
+#attack {
+  background-color: rgb(201, 224, 72);
+}
+
+#defense {
+  background-color: rgb(202, 44, 194);
+}
+
+#special-attack {
+  background-color: rgb(131, 255, 214);
+}
+
+#special-defense {
+  background-color: darkslateblue;
+}
+
+#speed {
+  background-color: palegreen;
+}

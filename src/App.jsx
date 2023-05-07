@@ -160,7 +160,6 @@ function App() {
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
     const pokemonName = e.target.textContent;
-    window.scrollTo(top);
     setIsLoaderShown(true);
     try {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;

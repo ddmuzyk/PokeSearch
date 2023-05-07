@@ -74,6 +74,7 @@ button:focus-visible {
 
 html {
   background: rgb(224, 192, 103);
+  /* background: rgb(212, 208, 165); */
   height: 100%;
   /* overflow-x: hidden; */
 }
