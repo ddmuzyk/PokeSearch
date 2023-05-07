@@ -13,14 +13,11 @@ const BaseStats = ({pokemonData}) => {
             return (
             
             <tr className="base-stat" key={stat}>
-              <th className="base-stat-item" >{stat !== 'hp' ? `${stat[0].toUpperCase()}${stat.slice(1)}` : stat.toUpperCase()} : <span className="pokefont">{baseStat}</span></th>
-              {/* <td className="barchart-container">
-                <div className="barchart" id={`${stat}`} style={{width: `${baseStat/255 * 100}%`}}></div>
-              </td> */}
+              <th className="base-stat-item" >{stat !== 'hp' ? `${stat[0].toUpperCase()}${stat.slice(1)}` : stat.toUpperCase()} : 
+              </th>
+              <td className="data-value">{baseStat}</td>
             </tr>
-
             )
-            
           })}
         </tbody>
       </table>

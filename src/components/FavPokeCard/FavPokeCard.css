@@ -74,6 +74,7 @@
   user-select: none;
   /* border: 1px solid rgb(180, 100, 25);
   border-radius: 10px; */
+  white-space: nowrap;
 }
 
 .load-fav-button:hover {

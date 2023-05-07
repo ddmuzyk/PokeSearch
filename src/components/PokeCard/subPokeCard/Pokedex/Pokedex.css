@@ -2,15 +2,39 @@
   width: 300px;
 }
 
+.pokedex-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.pokemon-type-data {
+  display: flex;
+  flex-direction: column;
+}
+
 .pokedex-data {
   font-size: 18px;
 }
 
+.pokedex-table {
+  width: 100%;
+}
+
 .type {
-  margin-right: 10px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
-  padding: 5px;
+  /* padding: 5px; */
+  border-spacing: 10px;
+}
+
+
+
+
+.type-data {
+  /* text-align: left; */
+  font-weight: lighter;
 }
 
 .type-normal {

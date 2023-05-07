@@ -5,24 +5,20 @@
 .base-stats-container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-.base-stat {
-  display: flex;
-  height: fit-content;
-  justify-content: flex-start;
-  align-items: center;
   gap: 20px;
 }
 
+/* .base-stat {
+  display: flex;
+  height: 20px;
+  justify-content: flex-start;
+  align-items: center;
+} */
+
 .base-stat-item {
   font-size: 18px;
-}
-
-.pokefont {
-  font-family: Pokemon, Montserrat;
-  letter-spacing: 3px;
+  font-weight: lighter;
+  white-space: nowrap;
 }
 
 .barchart-container {

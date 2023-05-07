@@ -121,11 +121,33 @@
 .info-container {
   margin-top: 200px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .subcomponent-title {
   font-size: 2rem;
   flex-wrap: wrap;
+}
+
+.pokefont {
+  font-family: Pokemon, Montserrat;
+  letter-spacing: 3px;
+  font-size: 18px;
+  height: 18px;
+}
+
+th, td {
+  line-height: 1;
+  vertical-align: middle;
+  /* padding: 4px 10px; */
+}
+
+.data-value {
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 430px) {
