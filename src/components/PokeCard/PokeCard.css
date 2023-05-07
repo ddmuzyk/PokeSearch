@@ -156,7 +156,12 @@ th, td {
   }
 
   .pokemon-img {
-    width: 200px;
+    width: 60vw;
+  }
+
+  .favorites-icon {
+    width: 35px;
+    margin-right: 0;
   }
 }
 
