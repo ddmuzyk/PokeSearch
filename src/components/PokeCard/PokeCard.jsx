@@ -27,7 +27,6 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
       <div className="info-container">
         <BaseStats pokemonData={pokemonData}/>
         <Pokedex pokemonData={pokemonData}/>
-        <Moves pokemonData={pokemonData}/>
       </div>
     </div>
   )

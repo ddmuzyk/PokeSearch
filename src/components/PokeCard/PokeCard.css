@@ -27,7 +27,7 @@
 }
 
 .pokemon-img {
-  width: 400px;
+  width: 360px;
 }
 
 .pokemon-description {
@@ -128,7 +128,7 @@
 
 .subcomponent-title {
   font-size: 2rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .pokefont {
@@ -139,7 +139,7 @@
 }
 
 th, td {
-  line-height: 1;
+  line-height: 1.5;
   vertical-align: middle;
   /* padding: 4px 10px; */
 }

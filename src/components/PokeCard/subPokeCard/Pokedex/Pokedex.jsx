@@ -6,6 +6,18 @@ const Pokedex = ({pokemonData}) => {
   const types = pokemonData.types;
   const height = String(pokemonData.height);
   const weight = String(pokemonData.weight);
+  let abilities = pokemonData.abilities;
+  let notUnique = [];
+  {for (let item of abilities) {
+    notUnique.push(item.ability.name);
+  }}
+  let uniObj = {};
+  {for (let item of notUnique) {
+    if (!uniObj[item]) {
+      uniObj[item] = true;
+    }
+  }}
+  abilities = Object.keys(uniObj);
 
   return (
     <div className="pokedex-wrapper">
@@ -30,6 +42,18 @@ const Pokedex = ({pokemonData}) => {
           <tr className="pokedex-data">
             <td className="type-data">Weight :</td>
             <td className="data-value">{`${weight/10} kg`}</td>
+          </tr>
+          <tr className="pokedex-data">
+            <td className="type-data">
+              Abilities : 
+            </td>
+            <td>
+              <ol>
+                {abilities.map((ability) => {
+                  return <li className="data-value" key={ability}>{`${ability[0].toUpperCase()}${ability.slice(1)}`}</li>
+                })}
+              </ol>
+            </td>
           </tr>
         </tbody>
       </table>
