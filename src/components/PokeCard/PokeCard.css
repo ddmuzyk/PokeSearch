@@ -15,7 +15,7 @@
   flex-direction: column;
   /* justify-content: center; */
   background: rgb(78, 163, 163);
-  margin-top: 25px;
+  margin: 25px 10% 20px 10%;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
@@ -28,6 +28,7 @@
 
 .pokemon-img {
   width: 360px;
+  border-radius: 20%;
 }
 
 .pokemon-description {
@@ -131,12 +132,12 @@
   /* flex-wrap: wrap; */
 }
 
-.pokefont {
+/* .pokefont {
   font-family: Pokemon, Montserrat;
   letter-spacing: 3px;
   font-size: 18px;
   height: 18px;
-}
+} */
 
 th, td {
   line-height: 1.5;
@@ -150,9 +151,9 @@ th, td {
   padding-left: 10px;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 500px) {
   .pokecard-container {
-    margin: 10%;
+    width: 80vw;
   }
 
   .pokemon-img {
@@ -160,8 +161,12 @@ th, td {
   }
 
   .favorites-icon {
-    width: 35px;
+    width: 10vw;
     margin-right: 0;
+  }
+
+  .pokemon-description {
+    font-size: 6vw;
   }
 }
 
@@ -172,5 +177,10 @@ th, td {
 
   .back-button {
     font-size: 20px;
+  }
+
+  .favorites-icon {
+    width: 10vw;
+    margin-right: 5px;
   }
 }

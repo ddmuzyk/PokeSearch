@@ -126,6 +126,12 @@
   }
 } */
 
+@media screen and (max-width: 700px) {
+  .nav-bar {
+    height: 70px;
+  }
+}
+
 @media screen and (max-width: 590px) {
   .pokesearch-title {
     font-size: 3rem;

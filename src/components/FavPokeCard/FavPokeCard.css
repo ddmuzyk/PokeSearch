@@ -52,6 +52,7 @@
 
 .fav-pokemon-img {
   width: 250px;
+  border-radius: 30%;
 }
 
 .fav-pokemon-description {

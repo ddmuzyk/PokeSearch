@@ -21,7 +21,7 @@ const Pokedex = ({pokemonData}) => {
 
   return (
     <div className="pokedex-wrapper">
-      <h2 className="subcomponent-title">Pokedex data</h2>
+      <h2 className="subcomponent-title" id="subcomponent-title">Pokedex data</h2>
       <table className="pokedex-table">
         <tbody className="pokedex-container">
           <tr className="pokedex-data ">
@@ -37,20 +37,20 @@ const Pokedex = ({pokemonData}) => {
           </tr>
           <tr className="pokedex-data">
             <td className="type-data">Height : </td>
-            <td className="data-value">{`${height/10} m`}</td>
+            <td className="data-value" id="data-value">{`${height/10} m`}</td>
           </tr>
           <tr className="pokedex-data">
             <td className="type-data">Weight :</td>
-            <td className="data-value">{`${weight/10} kg`}</td>
+            <td className="data-value" id="data-value">{`${weight/10} kg`}</td>
           </tr>
           <tr className="pokedex-data">
             <td className="type-data">
-              Abilities : 
+              {abilities.length === 1 ? "Ability :" : 'Abilities :'} 
             </td>
             <td>
               <ol>
                 {abilities.map((ability) => {
-                  return <li className="data-value" key={ability}>{`${ability[0].toUpperCase()}${ability.slice(1)}`}</li>
+                  return <li className="data-value" id="data-value" key={ability}>{`${ability[0].toUpperCase()}${ability.slice(1)}`}</li>
                 })}
               </ol>
             </td>

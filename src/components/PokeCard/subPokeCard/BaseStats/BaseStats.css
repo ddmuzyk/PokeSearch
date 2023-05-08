@@ -35,10 +35,7 @@
   border: 1px solid rgba(0, 0, 0, 0.164);
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid rgb(161, 99, 99);
-}
+
 
 #hp {
   background-color: rgb(185, 44, 44);
@@ -63,3 +60,33 @@ hr {
 #speed {
   background-color: palegreen;
 }
+
+@media screen and (max-width: 700px) {
+  
+}
+
+/* @media screen and (max-width: 500px) {
+  .base-stats-wrapper {
+    width: 30vw;
+  }
+
+  .pokedex-wrapper {
+    width: 30vw;
+  }
+
+  #subcomponent-title {
+    font-size: 4.2vw;
+  }
+
+  tr, th, td {
+    font-size: 2.9vw
+  }
+
+  #data-value {
+    font-size: 2.9vw;
+  }
+
+  #base-stat-item {
+    font-size: 2.9vw;
+  }
+} */
