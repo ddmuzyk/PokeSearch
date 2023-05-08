@@ -63,7 +63,12 @@ function App() {
 
   const onAddToFavoritesClick = () => {
     const pokemonKey = pokemonData.name;
-    const pokemonImg = pokemonData.sprites.other['official-artwork'].front_default;
+    const pokemonImg = pokemonData.sprites.other['official-artwork'].front_default 
+    ? 
+    pokemonData.sprites.other['official-artwork'].front_default 
+    : 
+    'https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/07/whos_that_pokemon.png?resize=1280%2C960&ssl=1';
+
     if (localStorage.getItem('favPokemons')) {
       let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
@@ -109,22 +114,6 @@ function App() {
       setHiddenResults(true);
       return;
     } else {
-      // if (results.length >= 1 && results[0].name.includes(e.target.value)) {
-      //   let times = 0;
-      //   results.forEach((result) => {
-      //     if (result.name.includes(e.target.value.toLowerCase())) {
-      //       times++
-      //     }
-      //   })
-      //   console.log('times:', times);
-      //   console.log('results.length: ', results.length)
-      //   if (times === results.length) {
-      //     return;
-      //   }
-      // }
-      // if (e.target.value.length > 1 && hiddenResults && !results.length) {
-      //   return;
-      // } 
       let newResults = [];
       let i = 0;
       let index = 0;
@@ -142,16 +131,11 @@ function App() {
           break;
         }
       };
-      // console.log(results)
       if (!newResults.length) {
         setHiddenResults(true);
         setResults([]);
         return;
       }
-      // Check if previous results are the same as new results to avoid unneccessary operations
-      // if (JSON.stringify(newResults) === JSON.stringify(results)) {
-      //   return;
-      // }
       setResults(results => newResults);
       setHiddenResults(false);
     }
