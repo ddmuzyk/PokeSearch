@@ -34,7 +34,7 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
           onClick={() => console.log(pokemonData)}
         />
       </div>
-      <ToggleSwitch/>
+      {/* <ToggleSwitch/> */}
       <h1 className="pokemon-description">{pokemonData.name.toUpperCase()}</h1>
       <div className="info-container">
         <BaseStats pokemonData={pokemonData}/>
