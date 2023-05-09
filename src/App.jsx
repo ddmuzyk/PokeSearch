@@ -76,12 +76,12 @@ function App() {
         //   console.log('Maximum number (30) of favorite pokemons reached.');
         //   return;
         // }
+        setAddedToFavorites(true);
         favPokemons[pokemonKey] = {
           name: pokemonKey,
           imgUrl: pokemonImg
         };
         localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
-        setAddedToFavorites(true);
       } else {
         delete favPokemons[pokemonKey];
         if (!Object.keys(favPokemons).length) {
@@ -246,7 +246,7 @@ function App() {
             <h1 className='back-button' onClick={() => {
               clearData();
               setRoute('search');
-              setScrollPosition(0);
+              // setScrollPosition(0);
               }}>
               Search
             </h1>
