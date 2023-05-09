@@ -3,7 +3,7 @@ import pokemons from "./constants/pokemons";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg';
 import rocket from './rocket.svg';
-
+import FavoritesRoute from './containers/FavoritesRoute/FavoritesRoute';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import FavPokeCard from './components/FavPokeCard/FavPokeCard';
@@ -85,7 +85,7 @@ function App() {
       } else {
         delete favPokemons[pokemonKey];
         if (!Object.keys(favPokemons).length) {
-          localStorage.removeItem('favPokemons')
+          localStorage.removeItem('favPokemons');
           setAddedToFavorites(false);
         } else {
           localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
@@ -205,10 +205,6 @@ function App() {
     }
   }
 
-  // const handleFavRendered = () => {
-  //   setComponentsRendered(componentsRendered + 1);
-  // }
-
   if (route === 'search') {
     return (
       <div className='search-route-wrapper'>
@@ -273,42 +269,20 @@ function App() {
       </div>
       )
   } else if (route === 'favorites') {
+
     return (
-      <div className='favorites-route-wrapper'>
-        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
-          <img className='loader' src={rocket} alt='Loading image'></img>
-        </div>
-        <div className='nav-bar'>
-          <span className='fav-route-btns-container'>
-            <h1 className='take-back-button' onClick={() => {
-              clearData();
-              setRoute('search');
-              setScrollPosition(0);
-            }}>
-            Take me back
-            </h1>
-          </span>
-        </div>
-        {pokemonKeys.length > 0 ? (
-          <div className='fav-pokemons-container'>
-            {pokemonKeys.map((key) => {
-              return <FavPokeCard key={key} 
-              pokemon={key}
-              data={`${key}`}
-              handleImageLoad={handleImageLoad}
-              onFavPokemonClick={onFavPokemonClick}
-              setFavoritesUpdated={setFavoritesUpdated}
-              favoritesUpdated={favoritesUpdated}
-              scrollPosition={scrollPosition}
-              />
-            })}
-          </div>
-        ) : (
-          <div className='no-fav-message-container'>
-            <h1 className='no-favorites-message'>Looks like you don't have any favorite pokemons yet...</h1>
-          </div>
-        )}
-      </div>
+      <FavoritesRoute
+        isImageLoaded={isImageLoaded}
+        isLoaderShown={isLoaderShown}
+        handleImageLoad={handleImageLoad}
+        onFavPokemonClick={onFavPokemonClick}
+        setFavoritesUpdated={setFavoritesUpdated}
+        favoritesUpdated={favoritesUpdated}
+        scrollPosition={scrollPosition}
+        clearData={clearData}
+        setRoute={setRoute}
+        setScrollPosition={setScrollPosition}
+      />
     )
   }
 }
