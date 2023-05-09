@@ -21,7 +21,7 @@ const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad
           <h1 className='take-back-button' onClick={() => {
             clearData();
             setRoute('search');
-            setScrollPosition(0);
+            // setScrollPosition(0);
           }}>
           Take me back
           </h1>
