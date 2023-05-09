@@ -23,7 +23,10 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
         <img className="fav-pokemon-img"
         src={favPokemons[pokemon].imgUrl}
         alt="Pokemon Image"
-        onLoad={() => window.scrollTo(0, scrollPosition)}
+        // onLoad={() => {
+        //   console.log('function');
+        //   window.scrollTo(0, scrollPosition)
+        //   }}
         // onLoad={handleImageLoad}
         />
       </div>
