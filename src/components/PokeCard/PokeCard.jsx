@@ -6,8 +6,11 @@ import Pokedex from "./subPokeCard/Pokedex/Pokedex";
 import Moves from "./subPokeCard/Moves/Moves";
 import ToggleSwitch from "./subPokeCard/ToggleSwitch/ToggleSwitch";
 import './PokeCard.css';
+import Sprites from "./subPokeCard/Sprites/Sprites";
 
 const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, addedToFavorites, onAddToFavoritesClick}) => {
+
+
 
   let imgUrl = '';
 
@@ -40,6 +43,7 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
         <BaseStats pokemonData={pokemonData}/>
         <Pokedex pokemonData={pokemonData}/>
       </div>
+      <Sprites pokemonData={pokemonData}/>
     </div>
   )
 }
