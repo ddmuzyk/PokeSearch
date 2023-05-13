@@ -12,7 +12,7 @@ const Sprites = ({pokemonData}) => {
     Object.entries(obj).forEach(([key, value]) => {
       if (typeof value === 'object' && value !== null) {
         imageUrls.push(...extractImageUrls(value)); // Recursive call for nested objects
-      } else if (typeof value === 'string' && value.startsWith('http')) {
+      } else if (typeof value === 'string' && value.startsWith('http') && !value.includes('generation')) {
         imageUrls.push(value); // Adding the image URL to the array
       }
     });
@@ -28,12 +28,19 @@ const Sprites = ({pokemonData}) => {
   // }}
 
   return (
-    <div className="sprites-container">
-      {imgUrls.map((url) => {
-        return (
-          <img className="sprite-img" key={url} src={url}></img>
-        )
-      })}
+    <div className="sprites-wrapper">
+      <span className="sprites-title-container">
+        <h2 className="subcomponent-title" id="sprites-title">Sprites</h2>
+      </span>
+      <div className="sprites-container">
+        {imgUrls.map((url) => {
+          return (
+            <div className="sprite-img-container" key={url}>
+              <img className="sprite-img" src={url}></img>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
