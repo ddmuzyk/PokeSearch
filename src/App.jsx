@@ -70,7 +70,7 @@ function App() {
     'https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/07/whos_that_pokemon.png?resize=1280%2C960&ssl=1';
 
     if (localStorage.getItem('favPokemons')) {
-      let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+      // let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
         // if (pokemonKeys.length === 30) {
         //   console.log('Maximum number (30) of favorite pokemons reached.');
