@@ -20,6 +20,7 @@ const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad
         <span className='fav-route-btns-container'>
           <h1 className='take-back-button' onClick={() => {
             clearData();
+            setScrollPosition(window.scrollY);
             setRoute('search');
             // setScrollPosition(0);
           }}>
