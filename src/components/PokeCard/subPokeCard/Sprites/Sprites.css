@@ -5,7 +5,7 @@
 .sprites-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   overflow-x: auto;
   overflow-y: hidden;
   gap: 20px;
