@@ -36,33 +36,14 @@
 }
 
 
-
-#hp {
-  background-color: rgb(185, 44, 44);
-}
-
-#attack {
-  background-color: rgb(201, 224, 72);
-}
-
-#defense {
-  background-color: rgb(202, 44, 194);
-}
-
-#special-attack {
-  background-color: rgb(131, 255, 214);
-}
-
-#special-defense {
-  background-color: darkslateblue;
-}
-
-#speed {
-  background-color: palegreen;
-}
-
 @media screen and (max-width: 700px) {
-  
+  .base-stats-wrapper {
+    width: 50vw;
+  }
+
+  .base-stat-item {
+    font-size: 15px;
+  }
 }
 
 /* @media screen and (max-width: 500px) {
@@ -89,4 +70,28 @@
   #base-stat-item {
     font-size: 2.9vw;
   }
+} */
+
+/* #hp {
+  background-color: rgb(185, 44, 44);
+}
+
+#attack {
+  background-color: rgb(201, 224, 72);
+}
+
+#defense {
+  background-color: rgb(202, 44, 194);
+}
+
+#special-attack {
+  background-color: rgb(131, 255, 214);
+}
+
+#special-defense {
+  background-color: darkslateblue;
+}
+
+#speed {
+  background-color: palegreen;
 } */
