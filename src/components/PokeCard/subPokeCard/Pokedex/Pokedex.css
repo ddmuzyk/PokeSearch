@@ -112,4 +112,12 @@
   background-color: #EE99AC;
 }
 
+@media screen and (max-width: 700px) {
+  .type-data {
+    font-size: 15px;
+  }
 
+  .poke-type {
+    font-size: 15px;
+  }
+}

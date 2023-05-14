@@ -171,6 +171,12 @@ th, td {
 }
 
 @media screen and (max-width: 700px) {
+
+  .pokecard-container {
+    margin: 0 20vw 30px 20vw;
+    width: 70vw;
+  }
+
   .back-to-favorites-button {
     font-size: 20px;
   }
@@ -183,4 +189,17 @@ th, td {
     width: 10vw;
     margin-right: 5px;
   }
+
+  .subcomponent-title {
+    font-size: 23px;
+  }
+
+  .data-value {
+    font-size: 15px;
+  }
+
+  .info-container {
+    margin-top: 70px;
+  }
 }
+
