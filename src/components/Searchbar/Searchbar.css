@@ -30,6 +30,7 @@ input {
 
 .go-to-favorites-button:hover {
   text-decoration: underline;
+  user-select: none;
 }
 
 .title-and-searchbox-container {

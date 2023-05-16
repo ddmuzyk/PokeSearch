@@ -13,7 +13,8 @@
   width: 80%;
   min-height: 100vh;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
+  align-items: center;
   background: rgb(78, 163, 163);
   margin: 25px 10% 20px 10%;
   padding: 30px;
@@ -39,6 +40,7 @@
 
 .back-to-favorites-button {
   margin: 0;
+  user-select: none;
 }
 
 .back-to-favorites-button:hover {
@@ -105,6 +107,7 @@
 }
 
 .fav-icon-container {
+  width: 100%;
   display: flex;
   justify-self: center;
   justify-content: flex-end;
@@ -125,6 +128,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 70%;
 }
 
 .subcomponent-title {

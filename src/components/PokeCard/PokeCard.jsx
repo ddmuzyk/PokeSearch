@@ -34,6 +34,7 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
           checkLocalStorageForFavorites();
           handleImageLoad();
           }}
+          // To be deleted 
           onClick={() => console.log(pokemonData)}
         />
       </div>

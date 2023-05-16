@@ -142,6 +142,49 @@ function App() {
     }
   }
 
+  // Function to extract evolution data
+  const extractEvolutionData = () => {
+    const species = [];
+  
+    const recursiveExtraction = (data) => {
+      if (!data.evolves_to.length) {
+        species.push(data.species.name);
+      } else {
+        // console.log(data.evolves_to)
+        species.push(data.species.name);
+        recursiveExtraction(data.evolves_to[0]);
+      }
+    };
+  
+    return (data) => {
+      recursiveExtraction(data);
+      return species;
+    };
+  };
+
+  // Async help function to fetch other pokemon data
+  const fetchOtherData = async (url) => {
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const evolutionUrl = data.evolution_chain?.url;
+  
+      if (evolutionUrl) {
+
+        const evolutionResponse = await fetch(evolutionUrl);
+        const evolutionData = await evolutionResponse.json();
+        const extract = extractEvolutionData();
+        const species = extract(evolutionData.chain);
+        return species;
+      } else {
+        console.log("No evolution data available.");
+      }
+    } catch (error) {
+      console.error("Error occurred during data fetching:", error);
+    }
+  };
+
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
     const pokemonName = e.target.textContent;
@@ -150,7 +193,9 @@ function App() {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
-      
+      const speciesUrl = data.species.url;
+      const evolutions = await fetchOtherData(speciesUrl);
+      console.log(evolutions);
       setPokemonData(data);
       setRoute('resultsPage');
       window.scrollTo(top);
@@ -168,6 +213,8 @@ function App() {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
         const response = await fetch(url);
         const data = await response.json();
+        const speciesUrl = data.species.url;
+        const evolutions = await fetchOtherData(speciesUrl);
         setPokemonData(data);
         setRoute('resultsPage');
         window.scrollTo(top);
@@ -178,6 +225,24 @@ function App() {
   }
 
   
+  const onFavPokemonClick = async (e) => {
+    // setIsImageLoaded(false);
+    setScrollPosition(window.scrollY);
+    setIsLoaderShown(true);
+    const pokemonKey = e.target.getAttribute('data-pokemon');
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonKey}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const speciesUrl = data.species.url;
+      const evolutions = await fetchOtherData(speciesUrl);
+      setPokemonData(data);
+      window.scrollTo(top);
+      setRoute('resultsPage');
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const checkLocalStorageForFavorites = () => {
     if (localStorage.getItem('favPokemons')) {
@@ -189,22 +254,6 @@ function App() {
     }
   }
 
-  const onFavPokemonClick = async (e) => {
-    // setIsImageLoaded(false);
-    setScrollPosition(window.scrollY);
-    setIsLoaderShown(true);
-    const pokemonKey = e.target.getAttribute('data-pokemon');
-    try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setPokemonData(data);
-      window.scrollTo(top);
-      setRoute('resultsPage');
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   if (route === 'search') {
     return (
