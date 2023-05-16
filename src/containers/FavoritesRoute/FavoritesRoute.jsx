@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import rocket from '../../rocket.svg'
 import FavPokeCard from "../../components/FavPokeCard/FavPokeCard";
+import Footer from "../../components/Footer/Footer";
 
 const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad, onFavPokemonClick, setFavoritesUpdated, favoritesUpdated, scrollPosition, isImageLoaded, isLoaderShown}) => {
 
@@ -47,6 +48,7 @@ const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad
           <h1 className='no-favorites-message'>Looks like you don't have any favorite pokemons yet...</h1>
         </div>
       )}
+      <Footer/>
     </div>
   )
 }

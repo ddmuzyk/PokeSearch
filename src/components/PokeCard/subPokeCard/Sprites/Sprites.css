@@ -48,3 +48,17 @@
   /* width: fit-content;
   height: fit-content; */
 }
+
+@media screen and (max-width: 700px) {
+  .sprite-img {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .sprite-img-container {
+    margin: 20px 0;
+    height: 100px;
+    width: 100px;
+  }
+}
