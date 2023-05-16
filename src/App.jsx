@@ -7,6 +7,7 @@ import FavoritesRoute from './containers/FavoritesRoute/FavoritesRoute';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import FavPokeCard from './components/FavPokeCard/FavPokeCard';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
@@ -207,6 +208,7 @@ function App() {
 
   if (route === 'search') {
     return (
+      <>
       <div className='search-route-wrapper'>
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
               <img className='loader' src={rocket} alt='Loading image'></img>
@@ -233,7 +235,13 @@ function App() {
           onEnterClick={onEnterClick}
           />
         </div>
+        <div className='search-footer-container'>
+          <footer className='search-route-footer'>
+            <p className='search-footer-text'>Pokémon images & names © 1995-2023 Nintendo/Game Freak. Data from PokéAPI.</p>
+          </footer>
+        </div>
       </div>
+      </>
     )
   } else if (route === 'resultsPage') {
     return (
@@ -265,7 +273,9 @@ function App() {
         checkLocalStorageForFavorites={checkLocalStorageForFavorites}
         addedToFavorites={addedToFavorites}
         onAddToFavoritesClick={onAddToFavoritesClick}
+        
         />
+        <Footer/>
       </div>
       )
   } else if (route === 'favorites') {
