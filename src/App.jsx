@@ -142,6 +142,31 @@ function App() {
     }
   }
 
+  // Getting data to display the proper pokemon image in evolutions tab
+  const getData = (array, name) => {
+    const filtered = array.filter(item => item !== name);
+    let pokemonInfo = {}
+    const loopAndFetch = async() => {
+      for (let i = 0; i < filtered.length; i++) {
+        const name = filtered[i]
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const data = await response.json();
+        const img = await data.sprites.other['official-artwork'].front_default;
+        const id = await data.id;
+        pokemonInfo[name] = {
+          name: name,
+          img: img,
+          id: id
+        };
+      }
+    }
+
+    return async() => {
+      await loopAndFetch();
+      return pokemonInfo;
+    }
+  }
+
   // Function to extract evolution data
   const extractEvolutionData = () => {
     const species = [];
@@ -163,7 +188,7 @@ function App() {
   };
 
   // Async help function to fetch other pokemon data
-  const fetchOtherData = async (url) => {
+  const fetchSpeciesAndEvolutions = async (url) => {
 
     try {
       const response = await fetch(url);
@@ -171,12 +196,16 @@ function App() {
       const evolutionUrl = data.evolution_chain?.url;
   
       if (evolutionUrl) {
+        try {
+          const evolutionResponse = await fetch(evolutionUrl);
+          const evolutionData = await evolutionResponse.json();
+          const extract = extractEvolutionData();
+          const species = extract(evolutionData.chain);
+          return species;
 
-        const evolutionResponse = await fetch(evolutionUrl);
-        const evolutionData = await evolutionResponse.json();
-        const extract = extractEvolutionData();
-        const species = extract(evolutionData.chain);
-        return species;
+        } catch (error) {
+          console.error("Error occurred during data fetching:", error);
+        }
       } else {
         console.log("No evolution data available.");
       }
@@ -194,8 +223,10 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       const speciesUrl = data.species.url;
-      const evolutions = await fetchOtherData(speciesUrl);
-      console.log(evolutions);
+      const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
+      const getPokemonData = getData(evolutions, data.name);
+      const pokeDataObject = await getPokemonData();
+      data.evolutions = pokeDataObject;
       setPokemonData(data);
       setRoute('resultsPage');
       window.scrollTo(top);
@@ -214,7 +245,11 @@ function App() {
         const response = await fetch(url);
         const data = await response.json();
         const speciesUrl = data.species.url;
-        const evolutions = await fetchOtherData(speciesUrl);
+        const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
+        // 
+        const getPokemonData = getData(evolutions, data.name);
+        const pokeDataObject = await getPokemonData();
+        data.evolutions = pokeDataObject;
         setPokemonData(data);
         setRoute('resultsPage');
         window.scrollTo(top);
@@ -235,7 +270,10 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       const speciesUrl = data.species.url;
-      const evolutions = await fetchOtherData(speciesUrl);
+      const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
+      const getPokemonData = getData(evolutions, data.name);
+      const pokeDataObject = await getPokemonData();
+      data.evolutions = pokeDataObject;
       setPokemonData(data);
       window.scrollTo(top);
       setRoute('resultsPage');
