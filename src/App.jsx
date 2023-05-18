@@ -143,29 +143,29 @@ function App() {
   }
 
   // Getting data to display the proper pokemon image in evolutions tab
-  const getData = (array, name) => {
-    const filtered = array.filter(item => item !== name);
-    let pokemonInfo = {}
-    const loopAndFetch = async() => {
-      for (let i = 0; i < filtered.length; i++) {
-        const name = filtered[i]
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        const data = await response.json();
-        const img = await data.sprites.other['official-artwork'].front_default;
-        const id = await data.id;
-        pokemonInfo[name] = {
-          name: name,
-          img: img,
-          id: id
-        };
-      }
-    }
+  // const getData = (array, name) => {
+  //   const filtered = array.filter(item => item !== name);
+  //   let pokemonInfo = {}
+  //   const loopAndFetch = async() => {
+  //     for (let i = 0; i < filtered.length; i++) {
+  //       const name = filtered[i]
+  //       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  //       const data = await response.json();
+  //       const img = await data.sprites.other['official-artwork'].front_default;
+  //       const id = await data.id;
+  //       pokemonInfo[name] = {
+  //         name: name,
+  //         img: img,
+  //         id: id
+  //       };
+  //     }
+  //   }
 
-    return async() => {
-      await loopAndFetch();
-      return pokemonInfo;
-    }
-  }
+  //   return async() => {
+  //     await loopAndFetch();
+  //     return pokemonInfo;
+  //   }
+  // }
 
   // Function to extract evolution data
   const extractEvolutionData = () => {
@@ -201,6 +201,7 @@ function App() {
           const evolutionData = await evolutionResponse.json();
           const extract = extractEvolutionData();
           const species = extract(evolutionData.chain);
+          console.log(species)
           return species;
 
         } catch (error) {
@@ -214,6 +215,11 @@ function App() {
     }
   };
 
+  // Helper function to fetch pokemon data
+  const fetchPokemonData = () => {
+    
+  }
+
   // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
     const pokemonName = e.target.textContent;
@@ -224,9 +230,9 @@ function App() {
       const data = await response.json();
       const speciesUrl = data.species.url;
       const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
-      const getPokemonData = getData(evolutions, data.name);
-      const pokeDataObject = await getPokemonData();
-      data.evolutions = pokeDataObject;
+      // const getPokemonData = getData(evolutions, data.name);
+      // const pokeDataObject = await getPokemonData();
+      data.evolutions = evolutions;
       setPokemonData(data);
       setRoute('resultsPage');
       window.scrollTo(top);
@@ -247,9 +253,9 @@ function App() {
         const speciesUrl = data.species.url;
         const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
         // 
-        const getPokemonData = getData(evolutions, data.name);
-        const pokeDataObject = await getPokemonData();
-        data.evolutions = pokeDataObject;
+        // const getPokemonData = getData(evolutions, data.name);
+        // const pokeDataObject = await getPokemonData();
+        data.evolutions = evolutions;
         setPokemonData(data);
         setRoute('resultsPage');
         window.scrollTo(top);
@@ -271,9 +277,9 @@ function App() {
       const data = await response.json();
       const speciesUrl = data.species.url;
       const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
-      const getPokemonData = getData(evolutions, data.name);
-      const pokeDataObject = await getPokemonData();
-      data.evolutions = pokeDataObject;
+      // const getPokemonData = getData(evolutions, data.name);
+      // const pokeDataObject = await getPokemonData();
+      data.evolutions = evolutions;
       setPokemonData(data);
       window.scrollTo(top);
       setRoute('resultsPage');

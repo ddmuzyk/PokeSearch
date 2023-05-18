@@ -1,3 +1,8 @@
 .evolution-img {
   width: 200px;
 }
+
+.evolution-pokemon-name {
+  font-family: Pokemon, Montserrat;
+  letter-spacing: 4px;
+}
