@@ -216,14 +216,7 @@ function App() {
   };
 
   // Helper function to fetch pokemon data
-  const fetchPokemonData = () => {
-    
-  }
-
-  // Display the searched pokemon when user clicks on a result
-  const onResultClick = async (e) => {
-    const pokemonName = e.target.textContent;
-    setIsLoaderShown(true);
+  const fetchPokemonData = async(pokemonName) => {
     try {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const response = await fetch(url);
@@ -241,51 +234,32 @@ function App() {
     }
   }
 
+  // Display the searched pokemon when user clicks on a result
+  const onResultClick = async (e) => {
+    const pokemonName = e.target.textContent;
+    setIsLoaderShown(true);
+    await fetchPokemonData(pokemonName);
+  }
+
   const onEnterClick =  async () => {
     if (selectedResult > -1) {
       const pokemonName = results[selectedResult].name;
       // console.log(pokemonName);
       setIsLoaderShown(true);
-      try {
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        const speciesUrl = data.species.url;
-        const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
-        // 
-        // const getPokemonData = getData(evolutions, data.name);
-        // const pokeDataObject = await getPokemonData();
-        data.evolutions = evolutions;
-        setPokemonData(data);
-        setRoute('resultsPage');
-        window.scrollTo(top);
-      } catch (err) {
-        console.log(err);
-      }
+      await fetchPokemonData(pokemonName);
     }
   }
 
-  
   const onFavPokemonClick = async (e) => {
     // setIsImageLoaded(false);
     setScrollPosition(window.scrollY);
     setIsLoaderShown(true);
-    const pokemonKey = e.target.getAttribute('data-pokemon');
-    try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      const speciesUrl = data.species.url;
-      const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
-      // const getPokemonData = getData(evolutions, data.name);
-      // const pokeDataObject = await getPokemonData();
-      data.evolutions = evolutions;
-      setPokemonData(data);
-      window.scrollTo(top);
-      setRoute('resultsPage');
-    } catch (err) {
-      console.log(err);
-    }
+    const pokemonName = e.target.getAttribute('data-pokemon');
+    await fetchPokemonData(pokemonName);
+  }
+
+  const onEvolutionBtnClick = async(pokemon) => {
+    setIsLoaderShown(true);
   }
 
   const checkLocalStorageForFavorites = () => {

@@ -1,11 +1,10 @@
 import React from "react";
 import './Evolutions.css';
-import pokemons from "../../../../constants/pokemons";
 
 const Evolutions = ({pokemonData}) => {
 
   const name = pokemonData.name;
-  const evolutions = pokemonData.evolutions.filter(item => item !== name);
+  const evolutions = pokemonData.evolutions.length ? pokemonData.evolutions.filter(item => item !== name) : [];
   // {for (let item of evolutions) {
   //   console.log(item)
   //   // for (let i = 0; i < pokemons.length; i++) {
@@ -17,13 +16,15 @@ const Evolutions = ({pokemonData}) => {
   // }}
   // console.log(evolutions)
 
-  return (
+   if (evolutions.length) return (
     <div className="evolutions-container">
+      <h2 id="evolution-title" className="subcomponent-title">{evolutions.length === 1 ? "Evolution" : 'Evolutions'}</h2>
       {evolutions.map((pokemon) => {
         return (
           <div key={pokemon} className="evolution-card">
             {/* <img src={evolutions[pokemon].img} className="evolution-img"></img> */}
             <h3 className="evolution-pokemon-name">{`${pokemon[0].toUpperCase()}${pokemon.slice(1)}`}</h3>
+            <button className="evolution-load-btn">Load More</button>
           </div>
         )}
       )}
