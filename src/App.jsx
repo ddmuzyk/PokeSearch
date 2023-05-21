@@ -321,6 +321,7 @@ function App() {
             <h1 className='back-button' onClick={() => {
               clearData();
               setRoute('search');
+              window.scrollTo(top);
               // setScrollPosition(0);
               }}>
               Search
