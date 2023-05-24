@@ -23,6 +23,7 @@ const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad
             clearData();
             setScrollPosition(window.scrollY);
             setRoute('search');
+            window.scrollTo(top);
             // setScrollPosition(0);
           }}>
           Take me back
