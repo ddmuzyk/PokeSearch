@@ -1,7 +1,7 @@
 import React from "react";
 import './Evolutions.css';
 
-const Evolutions = ({pokemonData}) => {
+const Evolutions = ({pokemonData, onEvolutionBtnClick}) => {
 
   const name = pokemonData.name;
   const evolutions = pokemonData.evolutions.length ? pokemonData.evolutions.filter(item => item !== name) : [];
@@ -24,7 +24,12 @@ const Evolutions = ({pokemonData}) => {
           <div key={pokemon} className="evolution-card">
             {/* <img src={evolutions[pokemon].img} className="evolution-img"></img> */}
             <h3 className="evolution-pokemon-name">{`${pokemon[0].toUpperCase()}${pokemon.slice(1)}`}</h3>
-            <button className="evolution-load-btn">Load More</button>
+            <button 
+            className="evolution-load-btn" 
+            data-pokemon={pokemon}
+            onClick={() => {onEvolutionBtnClick(pokemon)}}
+            >Load More
+            </button>
           </div>
         )}
       )}

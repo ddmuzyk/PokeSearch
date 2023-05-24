@@ -201,7 +201,7 @@ function App() {
           const evolutionData = await evolutionResponse.json();
           const extract = extractEvolutionData();
           const species = extract(evolutionData.chain);
-          console.log(species)
+          // console.log(species)
           return species;
 
         } catch (error) {
@@ -259,7 +259,11 @@ function App() {
   }
 
   const onEvolutionBtnClick = async(pokemon) => {
+    setIsImageLoaded(false);
     setIsLoaderShown(true);
+    setAddedToFavorites(false);
+    // const pokemonName = e.target.getAttribute('data-pokemon');
+    await fetchPokemonData(pokemon);
   }
 
   const checkLocalStorageForFavorites = () => {
@@ -341,7 +345,7 @@ function App() {
         checkLocalStorageForFavorites={checkLocalStorageForFavorites}
         addedToFavorites={addedToFavorites}
         onAddToFavoritesClick={onAddToFavoritesClick}
-        
+        onEvolutionBtnClick={onEvolutionBtnClick}
         />
         <Footer/>
       </div>
