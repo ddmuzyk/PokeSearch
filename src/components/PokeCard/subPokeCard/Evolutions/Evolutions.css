@@ -21,12 +21,24 @@
 .evolution-load-btn {
   font-family: Montserrat;
   font-size: 18px;
+  font-weight: bold;
   background-color: wheat;
   border: none;
   border-radius: 10px;
   padding: 4px 10px;
   cursor: pointer;
   height: 40px;
+  box-shadow: 0 2px 3px 1px rgba(0,0,0,0.5);
+  transition: all 0.05s;
+}
+
+.evolution-load-btn:hover {
+  filter: brightness(90%);
+}
+
+.evolution-load-btn:active {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.5);
+  transform: translateY(2px);
 }
 
 /* .evolution-pokemon-name:hover {
