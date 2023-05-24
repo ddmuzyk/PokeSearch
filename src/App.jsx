@@ -36,6 +36,8 @@ function App() {
       document.title = `${pokemonName[0].toUpperCase()}${pokemonName.slice(1, pokemonName.length)} | PokeSearch`;
     } else if (route === 'favorites') {
       document.title = 'Favorites | PokeSearch';
+    } else if (route === 'error') {
+      document.title = 'Ooops!';
     }
     
   }, [route])
