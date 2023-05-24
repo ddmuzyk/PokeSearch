@@ -21,13 +21,12 @@ const Sprites = ({pokemonData}) => {
   }
 
   const imgUrls = extractImageUrls(sprites);
-  
 
   // {for (let item of Object.keys(sprites)) {
   //   console.log(sprites[item])
   // }}
 
-  return (
+  if (imgUrls.length) return (
     <div className="sprites-wrapper">
       <span className="sprites-title-container">
         <h2 className="subcomponent-title" id="sprites-title">Sprites</h2>

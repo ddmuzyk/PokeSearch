@@ -1,0 +1,63 @@
+.error-route-wrapper {
+  height: 100%;
+}
+
+.error-container {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.error-header {
+  font-size: 4rem;
+  text-align: center;
+}
+
+.error-message {
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.error-btns-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.error-btn {
+  font-family: Montserrat;
+  height: fit-content;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: wheat;
+  border: none;
+  border-radius: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  height: 40px;
+  box-shadow: 0 2px 3px 1px rgba(0,0,0,0.5);
+  transition: all 0.05s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.error-btn:hover {
+  filter: brightness(90%);
+}
+
+.error-btn:active {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.5);
+  transform: translateY(2px);
+}
+
+@media screen and (max-width: 370px) {
+  .error-header {
+    font-size: 3rem;
+    word-break: break-all;
+  }
+}

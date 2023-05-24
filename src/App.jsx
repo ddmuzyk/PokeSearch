@@ -8,6 +8,7 @@ import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
 import FavPokeCard from './components/FavPokeCard/FavPokeCard';
 import Footer from './components/Footer/Footer';
+import Error from './components/Error/Error';
 import './App.css';
 
 function App() {
@@ -187,6 +188,13 @@ function App() {
     };
   };
 
+  // Function that runs when fetching data responds with an error
+  const onFetchError = () => {
+    setRoute('error');
+    setIsLoaderShown(false);
+    clearData();
+  }
+
   // Async help function to fetch other pokemon data
   const fetchSpeciesAndEvolutions = async (url) => {
 
@@ -206,12 +214,14 @@ function App() {
 
         } catch (error) {
           console.error("Error occurred during data fetching:", error);
+          onFetchError();
         }
       } else {
         console.log("No evolution data available.");
       }
     } catch (error) {
       console.error("Error occurred during data fetching:", error);
+      onFetchError();
     }
   };
 
@@ -231,6 +241,7 @@ function App() {
       window.scrollTo(top);
     } catch (err) {
       console.log(err);
+      onFetchError();
     }
   }
 
@@ -365,6 +376,16 @@ function App() {
         setRoute={setRoute}
         setScrollPosition={setScrollPosition}
       />
+    )
+  } else if (route === 'error') {
+    return (
+      <div className='error-route-wrapper'>
+        <Error
+          clearData={clearData}
+          setAddedToFavorites={setAddedToFavorites}
+          setRoute={setRoute}
+        />
+      </div>
     )
   }
 }
