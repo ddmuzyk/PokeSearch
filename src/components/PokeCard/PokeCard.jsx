@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import heartEmpty from '../../img/heart-regular.svg';
 import heartFull from '../../img/heart-solid.svg';
 import BaseStats from "./subPokeCard/BaseStats/BaseStats";
@@ -11,7 +11,10 @@ import Evolutions from "./subPokeCard/Evolutions/Evolutions";
 
 const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, addedToFavorites, onAddToFavoritesClick, onEvolutionBtnClick}) => {
 
-
+  // useEffect(() => {
+  //   checkLocalStorageForFavorites();
+  //   handleImageLoad();
+  // }, []);
 
   let imgUrl = '';
 

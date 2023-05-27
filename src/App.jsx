@@ -25,7 +25,7 @@ function App() {
   const [selectedResult, setSelectedResult] = useState(-1);
   const [scrollPosition, setScrollPosition] = useState(0);
   // const [componentsRendered, setComponentsRendered] = useState(0);
-  const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
+  const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : null;
   const pokemonKeys = Object.keys(favPokemons);
 
   useEffect(() => {
@@ -76,10 +76,6 @@ function App() {
     if (localStorage.getItem('favPokemons')) {
       // let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
-        // if (pokemonKeys.length === 30) {
-        //   console.log('Maximum number (30) of favorite pokemons reached.');
-        //   return;
-        // }
         setAddedToFavorites(true);
         favPokemons[pokemonKey] = {
           name: pokemonKey,
@@ -274,6 +270,7 @@ function App() {
   const onEvolutionBtnClick = async(pokemon) => {
     setIsImageLoaded(false);
     setIsLoaderShown(true);
+    setRoute('search');
     setAddedToFavorites(false);
     // const pokemonName = e.target.getAttribute('data-pokemon');
     await fetchPokemonData(pokemon);
