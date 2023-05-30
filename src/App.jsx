@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import pokemons from "./constants/pokemons";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg';
@@ -14,7 +14,6 @@ import './App.css';
 function App() {
   const [results, setResults] = useState([]);
   const [hiddenResults, setHiddenResults] = useState(true);
-  // const [displayedPokemon, setDisplayedPokemon] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [pokemonData, setPokemonData] = useState({});
   const [route, setRoute] = useState('search');
@@ -24,7 +23,6 @@ function App() {
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const [selectedResult, setSelectedResult] = useState(-1);
   const [scrollPosition, setScrollPosition] = useState(0);
-  // const [componentsRendered, setComponentsRendered] = useState(0);
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : null;
   const pokemonKeys = Object.keys(favPokemons);
 
@@ -73,7 +71,7 @@ function App() {
     : 
     'https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/07/whos_that_pokemon.png?resize=1280%2C960&ssl=1';
 
-    if (localStorage.getItem('favPokemons')) {
+    if (favPokemons) {
       // let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
         setAddedToFavorites(true);
@@ -174,7 +172,6 @@ function App() {
       if (!data.evolves_to.length) {
         species.push(data.species.name);
       } else {
-        // console.log(data.evolves_to)
         species.push(data.species.name);
         recursiveExtraction(data.evolves_to[0]);
       }
@@ -207,9 +204,7 @@ function App() {
           const evolutionData = await evolutionResponse.json();
           const extract = extractEvolutionData();
           const species = extract(evolutionData.chain);
-          // console.log(species)
           return species;
-
         } catch (error) {
           console.error("Error occurred during data fetching:", error);
           onFetchError();
