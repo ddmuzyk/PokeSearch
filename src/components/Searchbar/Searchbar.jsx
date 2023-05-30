@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import './Searchbar.css';
 
 
 const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputValue, onResultClick, selectedResult, setSelectedResult, onEnterClick}) => {
+
+  const inputRef = useRef(null);
 
   const onResultHover = (e) => {
     // const pokemonName = e.target.textContent;
@@ -12,6 +14,10 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
     }
     
   }
+
+  useEffect(() => {
+    inputRef.current.focus();
+  },[]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -43,7 +49,9 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
 
   return (
     <div className="searchbar-container">
-      <input onChange={(e) => {
+      <input 
+      ref={inputRef}
+      onChange={(e) => {
         filterResults(e);
         if (e.target.value === '') {
           return setSelectedResult(-1);
@@ -53,7 +61,7 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
         }
       }} placeholder="Search pokemons"
       spellCheck={false}
-      style={{borderRadius : hiddenResults === false ? '10px 10px 0 0' : '10px'}}
+      style={{borderRadius: hiddenResults === false ? '10px 10px 0 0' : '10px'}}
       onKeyDown={(e) => handleKeyPress(e)}
       />
       <div className="search-results" hidden={hiddenResults}>
