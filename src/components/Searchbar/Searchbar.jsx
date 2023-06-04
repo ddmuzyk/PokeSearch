@@ -15,9 +15,9 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
     
   }
 
-  useEffect(() => {
-    inputRef.current.focus();
-  },[]);
+  // useEffect(() => {
+  //   inputRef.current.focus();
+  // },[]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
