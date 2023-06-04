@@ -114,17 +114,17 @@ function App() {
     } else {
       let newResults = [];
       let i = 0;
-      let index = 0;
+      // let index = 0;
       for (let pokemon of pokemons) {
         
         if ( i < 10) {
           if (pokemon["name"].includes(e.target.value.toLowerCase())) {
             // Index added so in the future I can add arrows to move between pokemons
-            pokemon.index = index;
+            // pokemon.index = index;
             newResults.push(pokemon);
             i++;
           }
-          index++;
+          // index++;
         } else {
           break;
         }
@@ -285,38 +285,38 @@ function App() {
   if (route === 'search') {
     return (
       <>
-      <div className='search-route-wrapper'>
-        <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
+        <div className='search-route-wrapper'>
+          <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
               <img className='loader' src={rocket} alt='Loading image'></img>
+          </div>
+          <div className='nav-bar'>
+            <span className='search-nav-btns'>
+              <h1 className='go-to-favorites-button' onClick={() => {
+                clearData();
+                setRoute('favorites');
+              }
+              }>Go to Favorites</h1>
+            </span>
+          </div>
+          <div className='title-and-searchbox-container'>
+            <h1 className='pokesearch-title'>PokeSearch</h1>
+            <Searchbar results={results} 
+            hiddenResults={hiddenResults} 
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            filterResults={filterResults}
+            onResultClick={onResultClick}
+            selectedResult={selectedResult}
+            setSelectedResult={setSelectedResult}
+            onEnterClick={onEnterClick}
+            />
+          </div>
+          <div className='search-footer-container'>
+            <footer className='search-route-footer'>
+              <p className='search-footer-text'>Pokémon images & names © 1995-2023 Nintendo/Game Freak. Data from PokéAPI.</p>
+            </footer>
+          </div>
         </div>
-        <div className='nav-bar'>
-          <span className='search-nav-btns'>
-            <h1 className='go-to-favorites-button' onClick={() => {
-              clearData();
-              setRoute('favorites');
-            }
-            }>Go to Favorites</h1>
-          </span>
-        </div>
-        <div className='title-and-searchbox-container'>
-          <h1 className='pokesearch-title'>PokeSearch</h1>
-          <Searchbar results={results} 
-          hiddenResults={hiddenResults} 
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          filterResults={filterResults}
-          onResultClick={onResultClick}
-          selectedResult={selectedResult}
-          setSelectedResult={setSelectedResult}
-          onEnterClick={onEnterClick}
-          />
-        </div>
-        <div className='search-footer-container'>
-          <footer className='search-route-footer'>
-            <p className='search-footer-text'>Pokémon images & names © 1995-2023 Nintendo/Game Freak. Data from PokéAPI.</p>
-          </footer>
-        </div>
-      </div>
       </>
     )
   } else if (route === 'resultsPage') {
