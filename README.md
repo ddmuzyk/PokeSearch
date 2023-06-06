@@ -2,7 +2,10 @@
 
 Inspired by Google Search website that allows users to find information about characters from the famous Pokemon series. By integrating the site with localStorage, users can add those characters to favorites which are saved locally in their browsers.
 
-[Live](https://pokesearch-pgoy.onrender.com/)
+Check out the website [here](https://pokesearch-pgoy.onrender.com/).
+
+<img src="./src/img/pokesearch.png">
+
 
 ## Project status (June 2023)
 
@@ -25,7 +28,7 @@ npm install
 npm run dev
 ```
 
-## Tech
+## Technologies
 
 * React.js
 * CSS
@@ -37,3 +40,5 @@ The website makes use of public and free to use [PokéAPI](https://pokeapi.co/).
 One of the core functionalities is the ability to search the characters by their name. The main page contains a custom searchbar (which looks similar to the one that Google Search provides) and the search results are displayed below the user input.
 
 Thanks to localStorage, users are able to save the pokemons to favorites locally in their browsers. Saved pokemons are displayed in the favorites tab, each character in a separate card containing two buttons - one which loads more information, and the other one that removes the character from favorites.
+
+<img src="./src/img/favorites.png">
