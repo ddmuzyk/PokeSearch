@@ -2,6 +2,8 @@
 
 Inspired by Google Search website that allows users to find information about characters from the famous Pokemon series. By integrating the site with localStorage, users can add those characters to favorites which are saved locally in their browsers.
 
+<img src="./src/img/pokesearch.png">
+
 [Live](https://pokesearch-pgoy.onrender.com/)
 
 ## Project status (June 2023)
@@ -25,7 +27,7 @@ npm install
 npm run dev
 ```
 
-## Tech
+## Technologies
 
 * React.js
 * CSS
