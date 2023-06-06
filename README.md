@@ -35,7 +35,7 @@ npm run dev
 
 ## How it works?
 
-The website makes use of public and free to use [PokéAPI](https://pokeapi.co/). Through async fetch calls, the data is translated from JSON format and dynamically displayed on the page.
+The website makes use of public [PokéAPI](https://pokeapi.co/). Through async fetch calls, the data is translated from JSON format and dynamically displayed on the page.
 
 One of the core functionalities is the ability to search the characters by their name. The main page contains a custom searchbar (which looks similar to the one that Google Search provides) and the search results are displayed below the user input.
 
