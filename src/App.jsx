@@ -1,53 +1,43 @@
 import { useState, useEffect} from 'react';
 import pokemons from "./constants/pokemons";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg';
 import rocket from './rocket.svg';
 import FavoritesRoute from './containers/FavoritesRoute/FavoritesRoute';
 import Searchbar from './components/Searchbar/Searchbar';
 import PokeCard from './components/PokeCard/PokeCard';
-import FavPokeCard from './components/FavPokeCard/FavPokeCard';
 import Footer from './components/Footer/Footer';
 import Error from './components/Error/Error';
 import './App.css';
+import { Urls, Routes, storageItem, pokemonDataAttribute } from './constants/constants';
 
 function App() {
   const [results, setResults] = useState([]);
   const [hiddenResults, setHiddenResults] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [pokemonData, setPokemonData] = useState({});
-  const [route, setRoute] = useState('search');
+  const [route, setRoute] = useState(Routes.Search);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const [selectedResult, setSelectedResult] = useState(-1);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : null;
-  const pokemonKeys = Object.keys(favPokemons);
+  const favPokemons = JSON.parse(localStorage.getItem(storageItem)) ? JSON.parse(localStorage.getItem(storageItem)) : null;
 
   useEffect(() => {
-    if (route === 'search') {
+    if (route === Routes.Search) {
       document.title = "PokeSearch";
-    } else if (route === 'resultsPage') {
+    } else if (route === Routes.ResultsPage) {
       const pokemonName = pokemonData.name;
       document.title = `${pokemonName[0].toUpperCase()}${pokemonName.slice(1, pokemonName.length)} | PokeSearch`;
-    } else if (route === 'favorites') {
+    } else if (route === Routes.Favorites) {
       document.title = 'Favorites | PokeSearch';
-    } else if (route === 'error') {
+    } else if (route === Routes.Error) {
       document.title = 'Ooops!';
     }
     
   }, [route])
 
   const handleImageLoad = () => {
-    // if (localStorage.getItem('favPokemons')) {
-    //   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
-    //   const pokemonName = pokemonData.name;
-    //   if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
-    //     setAddedToFavorites(true);
-    //   }
-    // }
     setIsImageLoaded(true);
     setIsLoaderShown(false);
   };
@@ -57,7 +47,6 @@ function App() {
     setPokemonData({});
     setResults([]);
     setHiddenResults(true);
-    // setRoute('search');
     setIsImageLoaded(false);
     setAddedToFavorites(false);
     setSelectedResult(-1);
@@ -68,30 +57,30 @@ function App() {
     const pokemonImg = pokemonData.sprites.other['official-artwork'].front_default 
     ? 
     pokemonData.sprites.other['official-artwork'].front_default 
-    : 
-    'https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/07/whos_that_pokemon.png?resize=1280%2C960&ssl=1';
+    :
+    Urls.UnknownPokemon;
+  
 
     if (favPokemons) {
-      // let favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
       if (!addedToFavorites) {
         setAddedToFavorites(true);
         favPokemons[pokemonKey] = {
           name: pokemonKey,
           imgUrl: pokemonImg
         };
-        localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+        localStorage.setItem(storageItem, JSON.stringify(favPokemons));
       } else {
         delete favPokemons[pokemonKey];
         if (!Object.keys(favPokemons).length) {
-          localStorage.removeItem('favPokemons');
+          localStorage.removeItem(storageItem);
           setAddedToFavorites(false);
         } else {
-          localStorage.setItem('favPokemons', JSON.stringify(favPokemons));
+          localStorage.setItem(storageItem, JSON.stringify(favPokemons));
           setAddedToFavorites(false);
         }
       }
     } else {
-      localStorage.setItem('favPokemons', JSON.stringify(
+      localStorage.setItem(storageItem, JSON.stringify(
         {
           [pokemonKey]: {
             name: pokemonKey,
@@ -101,30 +90,25 @@ function App() {
         ));
       setAddedToFavorites(true);
     }
-    // console.log(localStorage.getItem('favPokemons') === JSON.stringify(pokemonData))
   }
 
   const filterResults = (e) => {
     
     setInputValue(e.target.value);
     if (!e.target.value) {
-      setResults(results => []);
+      setResults([]);
       setHiddenResults(true);
       return;
     } else {
       let newResults = [];
       let i = 0;
-      // let index = 0;
       for (let pokemon of pokemons) {
         
         if ( i < 10) {
           if (pokemon["name"].includes(e.target.value.toLowerCase())) {
-            // Index added so in the future I can add arrows to move between pokemons
-            // pokemon.index = index;
             newResults.push(pokemon);
             i++;
           }
-          // index++;
         } else {
           break;
         }
@@ -134,37 +118,11 @@ function App() {
         setResults([]);
         return;
       }
-      setResults(results => newResults);
+      setResults(newResults);
       setHiddenResults(false);
     }
   }
 
-  // Getting data to display the proper pokemon image in evolutions tab
-  // const getData = (array, name) => {
-  //   const filtered = array.filter(item => item !== name);
-  //   let pokemonInfo = {}
-  //   const loopAndFetch = async() => {
-  //     for (let i = 0; i < filtered.length; i++) {
-  //       const name = filtered[i]
-  //       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  //       const data = await response.json();
-  //       const img = await data.sprites.other['official-artwork'].front_default;
-  //       const id = await data.id;
-  //       pokemonInfo[name] = {
-  //         name: name,
-  //         img: img,
-  //         id: id
-  //       };
-  //     }
-  //   }
-
-  //   return async() => {
-  //     await loopAndFetch();
-  //     return pokemonInfo;
-  //   }
-  // }
-
-  // Function to extract evolution data
   const extractEvolutionData = () => {
     const species = [];
   
@@ -183,9 +141,8 @@ function App() {
     };
   };
 
-  // Function that runs when fetching data responds with an error
   const onFetchError = () => {
-    setRoute('error');
+    setRoute(Routes.Error);
     setIsLoaderShown(false);
     clearData();
   }
@@ -218,19 +175,16 @@ function App() {
     }
   };
 
-  // Helper function to fetch pokemon data
   const fetchPokemonData = async(pokemonName) => {
     try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+      const url = `${Urls.BasePokemon}${pokemonName}`;
       const response = await fetch(url);
       const data = await response.json();
       const speciesUrl = data.species.url;
       const evolutions = await fetchSpeciesAndEvolutions(speciesUrl);
-      // const getPokemonData = getData(evolutions, data.name);
-      // const pokeDataObject = await getPokemonData();
       data.evolutions = evolutions;
       setPokemonData(data);
-      setRoute('resultsPage');
+      setRoute(Routes.ResultsPage);
       window.scrollTo(top);
     } catch (err) {
       console.log(err);
@@ -238,7 +192,6 @@ function App() {
     }
   }
 
-  // Display the searched pokemon when user clicks on a result
   const onResultClick = async (e) => {
     const pokemonName = e.target.textContent;
     setIsLoaderShown(true);
@@ -248,32 +201,29 @@ function App() {
   const onEnterClick =  async () => {
     if (selectedResult > -1) {
       const pokemonName = results[selectedResult].name;
-      // console.log(pokemonName);
       setIsLoaderShown(true);
       await fetchPokemonData(pokemonName);
     }
   }
 
   const onFavPokemonClick = async (e) => {
-    // setIsImageLoaded(false);
     setScrollPosition(window.scrollY);
     setIsLoaderShown(true);
-    const pokemonName = e.target.getAttribute('data-pokemon');
+    const pokemonName = e.target.getAttribute(pokemonDataAttribute);
     await fetchPokemonData(pokemonName);
   }
 
   const onEvolutionBtnClick = async(pokemon) => {
     setIsImageLoaded(false);
     setIsLoaderShown(true);
-    setRoute('search');
+    setRoute(Routes.ResultsPage);
     setAddedToFavorites(false);
-    // const pokemonName = e.target.getAttribute('data-pokemon');
     await fetchPokemonData(pokemon);
   }
 
   const checkLocalStorageForFavorites = () => {
-    if (localStorage.getItem('favPokemons')) {
-      const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
+    if (localStorage.getItem(storageItem)) {
+      const favPokemons = JSON.parse(localStorage.getItem(storageItem));
       const pokemonName = pokemonData.name;
       if (favPokemons[pokemonName] && favPokemons[pokemonName].name === pokemonName) {
         setAddedToFavorites(true);
@@ -282,7 +232,7 @@ function App() {
   }
 
 
-  if (route === 'search') {
+  if (route === Routes.Search) {
     return (
       <>
         <div className='search-route-wrapper'>
@@ -293,7 +243,7 @@ function App() {
             <span className='search-nav-btns'>
               <h1 className='go-to-favorites-button' onClick={() => {
                 clearData();
-                setRoute('favorites');
+                setRoute(Routes.Favorites);
               }
               }>Go to Favorites</h1>
             </span>
@@ -319,7 +269,7 @@ function App() {
         </div>
       </>
     )
-  } else if (route === 'resultsPage') {
+  } else if (route === Routes.ResultsPage) {
     return (
       <div className='results-route-wrapper'>
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
@@ -329,19 +279,15 @@ function App() {
           <div className='buttons-container'>
             <h1 className='back-button' onClick={() => {
               clearData();
-              setRoute('search');
+              setRoute(Routes.Search);
               window.scrollTo(top);
-              // setScrollPosition(0);
               }}>
               Search
             </h1>
             <h1 className='back-to-favorites-button' onClick={() => {
               clearData();
-              setRoute('favorites');
+              setRoute(Routes.Favorites);
             }}>Favorites</h1>
-            {/* <h1 className='favorites-button' onClick={onAddToFavoritesClick}>
-              <img className='favorites-icon' src={addedToFavorites ? heartFull : heartEmpty}/>
-            </h1> */}
           </div>
         </div>
         
@@ -355,7 +301,7 @@ function App() {
         <Footer/>
       </div>
       )
-  } else if (route === 'favorites') {
+  } else if (route === Routes.Favorites) {
 
     return (
       <FavoritesRoute
@@ -371,7 +317,7 @@ function App() {
         setScrollPosition={setScrollPosition}
       />
     )
-  } else if (route === 'error') {
+  } else if (route === Routes.Error) {
     return (
       <div className='error-route-wrapper'>
         <Error
