@@ -252,8 +252,6 @@ function App() {
             <h1 className='pokesearch-title'>PokeSearch</h1>
             <Searchbar results={results} 
             hiddenResults={hiddenResults} 
-            inputValue={inputValue}
-            setInputValue={setInputValue}
             filterResults={filterResults}
             onResultClick={onResultClick}
             selectedResult={selectedResult}

@@ -1,5 +1,6 @@
 import React from "react";
 import './Error.css';
+import { Routes } from "../../constants/constants";
 
 const Error = ({setRoute, setAddedToFavorites, clearData}) => {
   return (
@@ -16,7 +17,7 @@ const Error = ({setRoute, setAddedToFavorites, clearData}) => {
         <button className="error-btn" onClick={() => {
           clearData();
           setAddedToFavorites(false);
-          setRoute('favorites');
+          setRoute(Routes.Favorites);
         }}
         >Back to favorites</button>
       </div>

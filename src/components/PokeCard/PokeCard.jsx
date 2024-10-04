@@ -1,27 +1,21 @@
-import React, {useEffect} from "react";
+import React from "react";
 import heartEmpty from '../../img/heart-regular.svg';
 import heartFull from '../../img/heart-solid.svg';
 import BaseStats from "./subPokeCard/BaseStats/BaseStats";
 import Pokedex from "./subPokeCard/Pokedex/Pokedex";
-import Moves from "./subPokeCard/Moves/Moves";
-import ToggleSwitch from "./subPokeCard/ToggleSwitch/ToggleSwitch";
 import './PokeCard.css';
 import Sprites from "./subPokeCard/Sprites/Sprites";
 import Evolutions from "./subPokeCard/Evolutions/Evolutions";
+import { Urls } from "../../constants/constants";
 
 const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, addedToFavorites, onAddToFavoritesClick, onEvolutionBtnClick}) => {
-
-  // useEffect(() => {
-  //   checkLocalStorageForFavorites();
-  //   handleImageLoad();
-  // }, []);
 
   let imgUrl = '';
 
   if (pokemonData.sprites.other['official-artwork'].front_default) {
     imgUrl = pokemonData.sprites.other['official-artwork'].front_default;
   } else {
-    imgUrl = 'https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/07/whos_that_pokemon.png?resize=1280%2C960&ssl=1';
+    imgUrl = Urls.UnknownPokemon;
   }
   
 
@@ -38,11 +32,8 @@ const PokeCard = ({pokemonData, handleImageLoad, checkLocalStorageForFavorites, 
           checkLocalStorageForFavorites();
           handleImageLoad();
           }}
-          // To be deleted 
-          // onClick={() => console.log(pokemonData)}
         />
       </div>
-      {/* <ToggleSwitch/> */}
       <h1 className="pokemon-description">{pokemonData.name.toUpperCase()}</h1>
       <div className="info-container">
         <BaseStats pokemonData={pokemonData}/>

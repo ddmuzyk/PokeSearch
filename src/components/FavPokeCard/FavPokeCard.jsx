@@ -2,7 +2,7 @@ import React from "react";
 import './FavPokeCard.css';
 
 const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavoritesUpdated, favoritesUpdated, scrollPosition}) => {
-  // Function example in App.jsx
+
   const favPokemons = JSON.parse(localStorage.getItem('favPokemons'));
 
   const removeFavorite = (e) => {
@@ -23,11 +23,6 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
         <img className="fav-pokemon-img"
         src={favPokemons[pokemon].imgUrl}
         alt="Pokemon Image"
-        // onLoad={() => {
-        //   console.log('function');
-        //   window.scrollTo(0, scrollPosition)
-        //   }}
-        // onLoad={handleImageLoad}
         />
       </div>
         <h2 className="fav-pokemon-description" >{pokemon.toUpperCase()}</h2>
@@ -39,8 +34,6 @@ const FavPokeCard = ({pokemon, onFavPokemonClick, data, handleImageLoad, setFavo
         <h3 className="remove-fav" data-pokemon={data} onClick={(e) => removeFavorite(e)}>Remove</h3>
     </div>
   )
-
-  // style={{fontSize: pokemon.length > 16 ? '1em' : '1.5em'}}
 }
 
 export default FavPokeCard;

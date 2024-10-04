@@ -1,46 +1,32 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useRef} from "react";
 import './Searchbar.css';
+import { Keys } from "../../constants/constants";
 
 
-const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputValue, onResultClick, selectedResult, setSelectedResult, onEnterClick}) => {
+const Searchbar = ({results, hiddenResults, filterResults, onResultClick, selectedResult, setSelectedResult, onEnterClick}) => {
 
   const inputRef = useRef(null);
 
-  const onResultHover = (e) => {
-    // const pokemonName = e.target.textContent;
-    // setSelectedResult(pokemonName);
-    if (results[selectedResult]) {
-      console.log(results[selectedResult].name);
-    }
-    
-  }
-
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // },[]);
-
   const handleKeyPress = (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (e.key === Keys.ArrowDown || e.key === Keys.ArrowUp) {
       e.preventDefault();
     }
     if (results.length) {
-      if (e.key === 'ArrowDown') {
+      if (e.key === Keys.ArrowDown) {
         e.preventDefault();
         if (selectedResult === results.length-1) {
           setSelectedResult(0);
           return;
         }
         setSelectedResult(selectedResult + 1);
-        // setInputValue(results[selectedResult].name)
-        // console.log(selectedResult);
-      } else if (e.key === 'ArrowUp') {
+      } else if (e.key === Keys.ArrowUp) {
         e.preventDefault();
         if (selectedResult <= 0 ) {
           setSelectedResult(results.length-1);
           return;
         }
         setSelectedResult(selectedResult-1)
-      } else if (e.key === 'Enter') {
+      } else if (e.key === Keys.Enter) {
         onEnterClick();
       }
       
@@ -67,11 +53,9 @@ const Searchbar = ({results, hiddenResults, filterResults, inputValue, setInputV
       <div className="search-results" hidden={hiddenResults}>
         {results.map((result) => {
           return <h3 onClick={(e) => onResultClick(e)} 
-          // onMouseOver={(e) => onResultHover(e)}
           className={`search-result ${results[selectedResult] && results[selectedResult].name === result.name ? 'selected' : ''}`}
           data-url={result.url} 
           key={result.url}
-          // style={{background: results[selectedResult] && results[selectedResult].name === result.name ? 'orange' : 'rgb(161, 153, 138)'}}
           >
           {result.name}
           </h3>
