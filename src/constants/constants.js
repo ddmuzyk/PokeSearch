@@ -13,3 +13,9 @@ export const Urls = {
 export const storageItem = 'favPokemons'
 
 export const pokemonDataAttribute = 'data-pokemon'
+
+export const Keys = {
+  ArrowDown: 'ArrowDown',
+  ArrowUp: 'ArrowUp',
+  Enter: 'Enter',
+}
