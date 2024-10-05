@@ -27,7 +27,7 @@
   background: rgb(78, 163, 163);
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.712);
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.712);
   transition: all 0.3s;
   font-family: Pokemon;
   letter-spacing: 3px;
@@ -35,7 +35,7 @@
 }
 
 .fav-pokecard-container:hover {
-  box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.808);
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.808);
 }
 
 .fav-img-container {
