@@ -13,18 +13,14 @@ const Sprites = ({pokemonData}) => {
       if (typeof value === 'object' && value !== null) {
         imageUrls.push(...extractImageUrls(value)); // Recursive call for nested objects
       } else if (typeof value === 'string' && value.startsWith('http') && !value.includes('generation')) {
-        imageUrls.push(value); // Adding the image URL to the array
+        imageUrls.push(value);
       }
     });
   
-    return imageUrls; // Return the accumulated image URLs
+    return imageUrls; 
   }
 
   const imgUrls = extractImageUrls(sprites);
-
-  // {for (let item of Object.keys(sprites)) {
-  //   console.log(sprites[item])
-  // }}
 
   if (imgUrls.length) return (
     <div className="sprites-wrapper">

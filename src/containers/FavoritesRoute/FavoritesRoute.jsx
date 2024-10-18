@@ -2,10 +2,12 @@ import React, {useEffect} from "react";
 import rocket from '../../rocket.svg'
 import FavPokeCard from "../../components/FavPokeCard/FavPokeCard";
 import Footer from "../../components/Footer/Footer";
+import { Routes, storageItem } from "../../constants/constants";
+import { getPokemonsFromStorage } from "../../utils/utils";
 
 const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad, onFavPokemonClick, setFavoritesUpdated, favoritesUpdated, scrollPosition, isImageLoaded, isLoaderShown}) => {
 
-  const favPokemons = JSON.parse(localStorage.getItem('favPokemons')) ? JSON.parse(localStorage.getItem('favPokemons')) : {};
+  const favPokemons = getPokemonsFromStorage(storageItem) ?? {};
   const pokemonKeys = Object.keys(favPokemons);
 
   useEffect(() => {
@@ -22,9 +24,8 @@ const FavoritesRoute = ({clearData, setRoute, setScrollPosition, handleImageLoad
           <h1 className='take-back-button' onClick={() => {
             clearData();
             setScrollPosition(window.scrollY);
-            setRoute('search');
+            setRoute(Routes.Search);
             window.scrollTo(top);
-            // setScrollPosition(0);
           }}>
           Take me back
           </h1>

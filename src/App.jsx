@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Error from './components/Error/Error';
 import './App.css';
 import { Urls, Routes, storageItem, pokemonDataAttribute } from './constants/constants';
+import { getPokemonsFromStorage } from './utils/utils';
 
 function App() {
   const [results, setResults] = useState([]);
