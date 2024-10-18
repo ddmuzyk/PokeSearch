@@ -262,7 +262,7 @@ function App() {
           </div>
           <div className='search-footer-container'>
             <footer className='search-route-footer'>
-              <p className='search-footer-text'>Pokémon images & names © 1995-2023 Nintendo/Game Freak. Data from PokéAPI.</p>
+              <p className='search-footer-text'>Pokémon images & names © 1995-2024 Nintendo/Game Freak. Data from PokéAPI.</p>
             </footer>
           </div>
         </div>
