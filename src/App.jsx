@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Error from './components/Error/Error';
 import './App.css';
 import { Urls, Routes, storageItem, pokemonDataAttribute } from './constants/constants';
+import { getPokemonsFromStorage } from './utils/utils';
 
 function App() {
   const [results, setResults] = useState([]);
@@ -261,7 +262,7 @@ function App() {
           </div>
           <div className='search-footer-container'>
             <footer className='search-route-footer'>
-              <p className='search-footer-text'>Pokémon images & names © 1995-2023 Nintendo/Game Freak. Data from PokéAPI.</p>
+              <p className='search-footer-text'>Pokémon images & names © 1995-2024 Nintendo/Game Freak. Data from PokéAPI.</p>
             </footer>
           </div>
         </div>
