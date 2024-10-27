@@ -1,4 +1,5 @@
 import { useState, useEffect} from 'react';
+import styled from 'styled-components';
 import pokemons from "./constants/pokemons";
 import rocket from './rocket.svg';
 import FavoritesRoute from './containers/FavoritesRoute/FavoritesRoute';
@@ -9,6 +10,16 @@ import Error from './components/Error/Error';
 import './App.css';
 import { Urls, Routes, storageItem, pokemonDataAttribute } from './constants/constants';
 import { getPokemonsFromStorage } from './utils/utils';
+import { NavBar } from './components/NavBar';
+
+const S = {
+  SearchRouteNavBar: styled(NavBar)`
+    justify-content: flex-end;
+  `,
+  ResultsRouteNavBar: styled(NavBar)`
+    justify-content: center;
+  `,
+}
 
 function App() {
   const [results, setResults] = useState([]);
@@ -240,15 +251,13 @@ function App() {
           <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
               <img className='loader' src={rocket} alt='Loading image'></img>
           </div>
-          <div className='nav-bar'>
-            <span className='search-nav-btns'>
-              <h1 className='go-to-favorites-button' onClick={() => {
-                clearData();
-                setRoute(Routes.Favorites);
-              }
-              }>Go to Favorites</h1>
-            </span>
-          </div>
+          <S.SearchRouteNavBar>
+            <h1 className='go-to-favorites-button' onClick={() => {
+              clearData();
+              setRoute(Routes.Favorites);
+            }
+            }>Go to Favorites</h1>
+          </S.SearchRouteNavBar>
           <div className='title-and-searchbox-container'>
             <h1 className='pokesearch-title'>PokeSearch</h1>
             <Searchbar results={results} 
@@ -274,7 +283,7 @@ function App() {
         <div className='svg-container' style={{display: !isImageLoaded && isLoaderShown ? 'flex' : 'none'}}>
           <img className='loader' src={rocket} alt='Loading image'></img>
         </div>
-        <div className='nav-bar'>
+        <S.ResultsRouteNavBar >
           <div className='buttons-container'>
             <h1 className='back-button' onClick={() => {
               clearData();
@@ -288,7 +297,7 @@ function App() {
               setRoute(Routes.Favorites);
             }}>Favorites</h1>
           </div>
-        </div>
+        </S.ResultsRouteNavBar>
         
         <PokeCard pokemonData={pokemonData}
         handleImageLoad={handleImageLoad}
