@@ -1,0 +1,17 @@
+.nav-bar {
+  height: 100px;
+  width: 100vw;
+  background: rgb(204, 169, 103);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 700px) {
+  .nav-bar {
+    height: 70px;
+  }
+}

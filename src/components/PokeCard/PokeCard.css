@@ -38,6 +38,7 @@
 }
 
 .back-to-favorites-button {
+  font-size: 32px;
   margin: 0;
   user-select: none;
 }
@@ -56,6 +57,7 @@
 }
 
 .back-button {
+  font-size: 32px;
   background: wheat;
   height: fit-content;
   margin: 0;

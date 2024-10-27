@@ -98,6 +98,7 @@
 }
 
 .take-back-button {
+  font-size: 32px;
   margin: 0 40px 0 0;
   cursor: pointer;
   user-select: none;
