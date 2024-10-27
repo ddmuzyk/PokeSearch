@@ -5,7 +5,7 @@ import FavPokeCard from "../../components/FavPokeCard/FavPokeCard";
 import Footer from "../../components/Footer/Footer";
 import { Routes, storageItem } from "../../constants/constants";
 import { getPokemonsFromStorage } from "../../utils/utils";
-import { NavBar } from "../../components/NavBar";
+import { NavBar } from "../../components/common/NavBar";
 
 const S = {
   NavBar: styled(NavBar)`

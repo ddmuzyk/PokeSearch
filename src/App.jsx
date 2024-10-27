@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import pokemons from "./constants/pokemons";
 import rocket from './rocket.svg';
@@ -10,7 +10,8 @@ import Error from './components/Error/Error';
 import './App.css';
 import { Urls, Routes, storageItem, pokemonDataAttribute } from './constants/constants';
 import { getPokemonsFromStorage } from './utils/utils';
-import { NavBar } from './components/NavBar';
+import { NavBar } from './components/common/NavBar';
+import { NavButton } from './components/common/NavBar/components/NavigationButton';
 
 const S = {
   SearchRouteNavBar: styled(NavBar)`
@@ -48,6 +49,11 @@ function App() {
     }
     
   }, [route])
+
+  const onRouteChange = useCallback((route) => {
+    clearData();
+    setRoute(route);
+  }, []);
 
   const handleImageLoad = () => {
     setIsImageLoaded(true);
@@ -261,12 +267,12 @@ function App() {
           <div className='title-and-searchbox-container'>
             <h1 className='pokesearch-title'>PokeSearch</h1>
             <Searchbar results={results} 
-            hiddenResults={hiddenResults} 
-            filterResults={filterResults}
-            onResultClick={onResultClick}
-            selectedResult={selectedResult}
-            setSelectedResult={setSelectedResult}
-            onEnterClick={onEnterClick}
+              hiddenResults={hiddenResults} 
+              filterResults={filterResults}
+              onResultClick={onResultClick}
+              selectedResult={selectedResult}
+              setSelectedResult={setSelectedResult}
+              onEnterClick={onEnterClick}
             />
           </div>
           <div className='search-footer-container'>
@@ -285,26 +291,27 @@ function App() {
         </div>
         <S.ResultsRouteNavBar >
           <div className='buttons-container'>
-            <h1 className='back-button' onClick={() => {
-              clearData();
-              setRoute(Routes.Search);
+            <NavButton onClick={() => {
+              onRouteChange(Routes.Search);
               window.scrollTo(top);
-              }}>
-              Search
-            </h1>
-            <h1 className='back-to-favorites-button' onClick={() => {
+              }} 
+              text={"Search"}>
+            </NavButton>
+            <NavButton onClick={() => {
               clearData();
               setRoute(Routes.Favorites);
-            }}>Favorites</h1>
+              }}
+             text={"Go to favorites"}>
+            </NavButton>
           </div>
         </S.ResultsRouteNavBar>
         
         <PokeCard pokemonData={pokemonData}
-        handleImageLoad={handleImageLoad}
-        checkLocalStorageForFavorites={checkLocalStorageForFavorites}
-        addedToFavorites={addedToFavorites}
-        onAddToFavoritesClick={onAddToFavoritesClick}
-        onEvolutionBtnClick={onEvolutionBtnClick}
+          handleImageLoad={handleImageLoad}
+          checkLocalStorageForFavorites={checkLocalStorageForFavorites}
+          addedToFavorites={addedToFavorites}
+          onAddToFavoritesClick={onAddToFavoritesClick}
+          onEvolutionBtnClick={onEvolutionBtnClick}
         />
         <Footer/>
       </div>
